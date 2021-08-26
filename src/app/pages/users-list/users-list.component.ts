@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { titleAnimation } from 'src/animations/title.animation';
 import { User } from 'src/models/User';
 import { FakeApiService } from 'src/services/api/fake-api.service';
 
 @Component({
   selector: 'i-users-list',
   templateUrl: './users-list.component.html',
-  styleUrls: ['./users-list.component.scss']
+  styleUrls: ['./users-list.component.scss'],
+  animations: [titleAnimation]
 })
 export class UsersListComponent implements OnInit {
   private users: User[];

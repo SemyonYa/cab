@@ -1,4 +1,4 @@
-<div class="wrap">
+<div class="wrap" @titleAnimation>
   <i-search-input (onChange)="search($event)"></i-search-input>
   <i-grid *ngIf="filteredUsers" [items]="filteredUsers" [titles]="titles" [withEdit]="true" [withDelete]="true"
     (onEditItem)="editUser($event)" (onDeleteItem)="editUser($event)"></i-grid>

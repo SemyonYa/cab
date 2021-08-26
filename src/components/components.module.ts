@@ -13,6 +13,7 @@ import { MenuItemComponent } from './menu-item/menu-item.component';
 import { ModalComponent } from './modal/modal.component';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { ToggleComponent } from './toggle/toggle.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -33,9 +34,14 @@ import { ToggleComponent } from './toggle/toggle.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    CommonModule,
+
     CollapsibleComponent,
     BreadcrumbsComponent,
     DropDownComponent,
