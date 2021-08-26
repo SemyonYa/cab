@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { titleAnimation } from '../../../animations/title.animation';
-import { UserRestService } from '../../../services/api/user-rest.service'
+import { UserRestService } from '../../../services/api/user.rest.service'
 import { User } from '../../../models/user';
 
 @Component({
