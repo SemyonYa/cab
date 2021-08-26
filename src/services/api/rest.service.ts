@@ -1,23 +1,41 @@
-import { HttpClient } from '@angular/common/http/http'
+import { HttpClient, HttpErrorResponse } from '@angular/common/http/http'
 import { BehaviorSubject, Observable } from 'rxjs'
 import { environment } from '../../environments/environment'
+import { UiService } from '../ui.service';
+
 
 export abstract class RestService<T extends { id: string }> {
-  route: string;
-  list$ = new BehaviorSubject<T[]>(null);
-  private url: string;
+  protected route: string;
 
-  constructor(private http: HttpClient) {
-    this.url = `${environment.baseUrl}/${this.route}`
+  list$ = new BehaviorSubject<T[]>(null);
+
+  private get url(): string {
+    return `${environment.baseUrl}${this.route}`;
   }
 
-  getAll(): void {
-    console.log(this.http);
+  constructor(private http: HttpClient, private ui: UiService) { }
 
+  getAll(): void {
     this.http.get<T[]>(this.url)
       .subscribe(
         items => {
           this.list$.next(items);
+        },
+        (err: HttpErrorResponse) => {
+          let errorText: string;
+          if (err.status < 500 && err.status >= 400) {
+            errorText = err.message;
+          } else {
+            errorText = 'It\'s a SAD  :-(';
+          }
+          console.error(err);
+          this.ui.showError(errorText);
+          setTimeout(() => {
+            this.ui.hideError();
+          }, 5000);
+        },
+        () => {
+          console.log('COMPLETE');
         }
       )
   }

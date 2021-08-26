@@ -13,6 +13,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { UsersListComponent } from './pages/users-list/users-list.component';
 import { UsersLockedComponent } from './pages/users-locked/users-locked.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     UsersAddComponent,
     UsersLockedComponent,
     UsersListComponent,
+    ErrorComponent,
   ],
   imports: [
     // BrowserModule,
