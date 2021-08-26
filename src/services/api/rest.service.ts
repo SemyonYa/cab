@@ -5,12 +5,29 @@ import { UiService } from '../ui.service';
 
 
 export abstract class RestService<T extends { id: string }> {
+  private errorTimeout: any;
   protected route: string;
 
   list$ = new BehaviorSubject<T[]>(null);
 
   private get url(): string {
     return `${environment.baseUrl}${this.route}`;
+  }
+
+  private handleError = (err: HttpErrorResponse) => {
+    if (this.errorTimeout) clearTimeout(this.errorTimeout);
+
+    let errorText: string;
+    if (err.status < 500 && err.status >= 400) {
+      errorText = err.message;
+    } else {
+      errorText = 'It\'s a SAD  :-(';
+    }
+
+    this.ui.showError(`${new Date()} --- ${errorText}`);
+    this.errorTimeout = setTimeout(() => {
+      this.ui.hideError();
+    }, 5000);
   }
 
   constructor(private http: HttpClient, private ui: UiService) { }
@@ -21,19 +38,7 @@ export abstract class RestService<T extends { id: string }> {
         items => {
           this.list$.next(items);
         },
-        (err: HttpErrorResponse) => {
-          let errorText: string;
-          if (err.status < 500 && err.status >= 400) {
-            errorText = err.message;
-          } else {
-            errorText = 'It\'s a SAD  :-(';
-          }
-          console.error(err);
-          this.ui.showError(errorText);
-          setTimeout(() => {
-            this.ui.hideError();
-          }, 5000);
-        },
+        this.handleError,
         () => {
           console.log('COMPLETE');
         }
