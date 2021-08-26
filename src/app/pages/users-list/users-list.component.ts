@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { titleAnimation } from 'src/animations/title.animation';
-import { User } from 'src/models/User';
-import { FakeApiService } from 'src/services/api/fake-api.service';
+import { titleAnimation } from '../../../animations/title.animation';
+import { UserRestService } from '../../../services/api/user-rest.service'
+import { User } from '../../../models/user';
 
 @Component({
   selector: 'i-users-list',
@@ -17,10 +17,11 @@ export class UsersListComponent implements OnInit {
   filteredUsers: User[];
   editableUser: User;
 
-  constructor(private fakeApiService: FakeApiService) { }
+  constructor(private userRest: UserRestService) { }
 
   ngOnInit(): void {
-    this.fakeApiService.users$
+    this.userRest.getAll();
+    this.userRest.list$
       .subscribe(
         us => {
           this.users = us;

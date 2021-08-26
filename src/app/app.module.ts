@@ -1,6 +1,4 @@
 import { NgModule } from '@angular/core';
-// import { BrowserModule } from '@angular/platform-browser';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ComponentsModule } from '../components/components.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +12,7 @@ import { UsersAddComponent } from './pages/users-add/users-add.component';
 import { UsersComponent } from './pages/users/users.component';
 import { UsersListComponent } from './pages/users-list/users-list.component';
 import { UsersLockedComponent } from './pages/users-locked/users-locked.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,6 +31,7 @@ import { UsersLockedComponent } from './pages/users-locked/users-locked.componen
     // BrowserAnimationsModule,
     AppRoutingModule,
     ComponentsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'i-image-loader',
-  templateUrl: './image-loader.component.html',
-  styleUrls: ['./image-loader.component.scss']
+  selector: 'i-file-input',
+  templateUrl: './file-input.component.html',
+  styleUrls: ['./file-input.component.scss']
 })
-export class ImageLoaderComponent implements OnInit {
+export class FileInputComponent implements OnInit {
   fileNames: string;
   constructor() { }
 
