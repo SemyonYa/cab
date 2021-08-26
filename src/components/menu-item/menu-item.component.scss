@@ -1,0 +1,41 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  // padding: 10px 0 10px 10px;
+
+  .item {
+    display: flex;
+    align-items: center;
+    padding: 4px;
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      padding: 2px;
+      margin-right: 10px;
+
+      &.pointer {
+        cursor: pointer;
+      }
+
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    .title {
+      font-size: 14px;
+      cursor: pointer;
+
+      &.active {
+        font-weight: 600;
+        color: var(--color-primary);
+      }
+    }
+  }
+
+  .children {
+    padding-left: 24px;
+  }
+}

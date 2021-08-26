@@ -1,0 +1,15 @@
+<div class="wrap">
+  <div class="item">
+    <div [ngClass]="{'icon': true, 'pointer': menuItem.children?.length > 0}">
+      <img *ngIf="menuItem.children?.length > 0" (click)="toggle()"
+        src="/assets/icons/{{menuItem.expanded ? 'minus' : 'plus'}}.svg">
+      <img *ngIf="!menuItem.children?.length" src="/assets/icons/dot.svg">
+    </div>
+    <span *ngIf="menuItem.route" [routerLink]="['/' + menuItem.route]" routerLinkActive="active"
+      class="title">{{menuItem.title}}</span>
+    <span *ngIf="!menuItem.route && menuItem.action" (click)="menuItem.action()" class="title">{{menuItem.title}}</span>
+  </div>
+  <div *ngIf="menuItem.children?.length > 0 && menuItem.expanded" class="children">
+    <i-menu-item *ngFor="let item of menuItem.children" [menuItem]="item"></i-menu-item>
+  </div>
+</div>

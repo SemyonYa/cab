@@ -1,0 +1,17 @@
+<i-header title="User page" subtitle="User page subtitle"></i-header>
+
+<div class="page col" @titleAnimation>
+  <h5>
+    Users
+    <button [routerLink]="['/users/add']" routerLinkActive="none" type="button" class="icon">
+      <img src="/assets/icons/plus.svg" alt="ADD">
+    </button>
+  </h5>
+
+  <router-outlet></router-outlet>
+  
+  <!-- <i-search-input (onChange)="search($event)"></i-search-input>
+  <i-grid *ngIf="filteredUsers" [items]="filteredUsers" [titles]="titles" [withEdit]="true" [withDelete]="true"
+    (onEditItem)="editUser($event)" (onDeleteItem)="editUser($event)"></i-grid> -->
+
+</div>

@@ -1,0 +1,24 @@
+<div class="wrap">
+  <aside>
+    <div class="logo">
+      <img src="/assets/icons/settings.svg" alt="LOGO">
+      {{title}}
+    </div>
+    <hr>
+    <div class="menu">
+      <i-menu-item *ngFor="let menuItem of menu" [menuItem]="menuItem"></i-menu-item>
+    </div>
+    <div class="version">
+      ver. {{version}}
+    </div>
+  </aside>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- MODAL -->
+  <i-modal *ngIf="modalShown" (onCancel)="hideModal()" (onOk)="logout()">
+    <p><strong>Are you sure?</strong></p>
+    <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet repellat expedita nobis.</p> -->
+  </i-modal>
+</div>

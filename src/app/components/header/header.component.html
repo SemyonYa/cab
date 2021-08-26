@@ -1,0 +1,10 @@
+<div class="wrap">
+  <div class="titles" @titleAnimation>
+    <h1 *ngIf="title">{{title}}</h1>
+    <h3 *ngIf="subtitle">{{subtitle}}</h3>
+  </div>
+  <div [routerLink]="['/profile']" routerLinkActive="active" class="profile-link">
+    <img src="/assets/icons/person-outline.svg" alt="USER">
+  </div>
+</div>
+<hr>
