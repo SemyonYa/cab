@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class UiService {
-  error$ = new BehaviorSubject<string>('ksdfbvksduyfb bkbsdfvsiduf bukluybkityvrt \n lkfbkasdy bkyboybkyu!!');
+  error$ = new BehaviorSubject<string>(null);
 
   constructor() { }
 

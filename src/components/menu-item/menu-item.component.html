@@ -9,7 +9,12 @@
       class="title">{{menuItem.title}}</span>
     <span *ngIf="!menuItem.route && menuItem.action" (click)="menuItem.action()" class="title">{{menuItem.title}}</span>
   </div>
-  <div *ngIf="menuItem.children?.length > 0 && menuItem.expanded" class="children">
+  <i-collapsible [expanded]="menuItem.children?.length > 0 && menuItem.expanded">
+    <div class="children">
+      <i-menu-item *ngFor="let item of menuItem.children" [menuItem]="item"></i-menu-item>
+    </div>
+  </i-collapsible>
+  <!-- <div *ngIf="menuItem.children?.length > 0 && menuItem.expanded" class="children">
     <i-menu-item *ngFor="let item of menuItem.children" [menuItem]="item"></i-menu-item>
-  </div>
+  </div> -->
 </div>

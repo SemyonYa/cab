@@ -1,7 +1,14 @@
-<div class="wrap" @titleAnimation>
+<div class="col" @titleAnimation>
+  <button [routerLink]="['/users/add']" type="button" class="add success">
+    <img src="/assets/icons/plus-white.svg" alt="ADD"> New user
+  </button>
+
   <i-search-input (onChange)="search($event)"></i-search-input>
   <i-grid *ngIf="filteredUsers" [items]="filteredUsers" [titles]="titles" [withEdit]="true" [withDelete]="true"
     (onEditItem)="editUser($event)" (onDeleteItem)="editUser($event)"></i-grid>
+  <div class="center">
+    <i-in-progress *ngIf="!filteredUsers" size="36px" margin="48px"></i-in-progress>
+  </div>
 </div>
 
 

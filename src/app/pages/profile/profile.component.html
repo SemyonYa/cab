@@ -1,5 +1,18 @@
 <i-header title="Profile page" subtitle="Profile page subtitle"></i-header>
 
-<div class="page" @titleAnimation>
-  <p>profile works!</p>
+<div *ngIf="user; else inProgress" class="page profile" @titleAnimation>
+  <div class="col">
+    <label>Name</label>
+    <input type="text" [value]="user.name">
+  </div>
+  <div class="col">
+    <label>Login</label>
+    <input type="text" [value]="user.login" readonly>
+  </div>
 </div>
+
+<ng-template #inProgress>
+  <div class="center">
+    <i-in-progress size="36px" margin="48px"></i-in-progress>
+  </div>
+</ng-template>

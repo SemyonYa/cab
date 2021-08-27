@@ -41,18 +41,22 @@ export class UsersListComponent implements OnInit {
 
   search(value: string) {
     this.searchValue = value;
+    console.log(this.searchValue);
+    
     this.filterUsers();
   }
 
   filterUsers() {
     this.filteredUsers = this.users
-      .filter(
-        u => {
-          const searchFields: string = [u.name, u.login, u.birth].join(' ').toLocaleLowerCase();
-          return this.searchValue
-            ? searchFields.indexOf(this.searchValue) !== -1
-            : true
-        }
-      );
+      ? this.users
+        .filter(
+          u => {
+            const searchFields: string = [u.name, u.login, u.birth].join(' ').toLocaleLowerCase();
+            return this.searchValue
+              ? searchFields.indexOf(this.searchValue) !== -1
+              : true
+          }
+        )
+      : null;
   }
 }

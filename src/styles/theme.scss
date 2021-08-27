@@ -40,13 +40,16 @@ button {
   border: none;
   background-color: transparent;
   cursor: pointer;
-  height: 30px;
+  padding: 7px 16px;
+  font-size: 11px;
+  line-height: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 15px;
+  border-radius: 8px;
   min-width: 100px;
   text-transform: uppercase;
+  box-sizing: border-box;
   box-shadow: 0 0 0px 0 rgba(0, 0, 0, 0);
   transition: .3s;
 }
@@ -57,13 +60,11 @@ button:hover {
 
 button.success {
   color: white;
-  font-weight: 600;
   background-color: var(--color-success);
 }
 
 button.danger {
   color: white;
-  font-weight: 600;
   background-color: var(--color-danger);
 }
 
@@ -74,9 +75,9 @@ button.icon {
   min-width: unset;
 }
 
-button.icon img {
-  width: 20px;
-  height: 20px;
+button img {
+  height: 14px;
+  margin-right: 4px;
 }
 
 /*
@@ -102,6 +103,10 @@ input.search {
   background-size: 16px 16px;
   background-position: calc(100% - 6px) center;
   background-repeat: no-repeat;
+}
+
+input[readonly] {
+  border-color: var(--color-secondary);
 }
 
 /*
@@ -178,7 +183,7 @@ input.search {
   align-items: center;
   gap: 12px;
   font-size: 18px;
-  padding: 6px 12px;
+  padding: 6px 0;
   border-radius: 6px;
   background-color: #fcfcfc;
 }
@@ -189,4 +194,19 @@ input.search {
 
 .breadcrumbs .slash {
   color: var(--color-secondary);
+}
+
+
+/*
+    PROFILE
+*/
+
+.profile .col {
+  align-items: flex-start;
+  padding-top: 24px;
+}
+
+label {
+  color: var(--color-secondary);
+  font-weight: 600;
 }

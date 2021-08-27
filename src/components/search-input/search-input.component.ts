@@ -14,13 +14,13 @@ export class SearchInputComponent implements AfterViewInit {
   ngAfterViewInit() {
     fromEvent(this.searchElem.nativeElement, 'input')
       .pipe(
-        debounceTime(1000)
+        debounceTime(600)
       )
       .subscribe(
-        // (e: InputEvent) => {
-        //   const value: string = (e.target['value'] as string).trim();
-        //   this.onChange.emit(value);
-        // }
+        (e: InputEvent) => {
+          const value: string = (e.target['value'] as string).trim();
+          this.onChange.emit(value);
+        }
       );
 
   }

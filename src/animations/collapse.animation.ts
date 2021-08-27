@@ -18,7 +18,7 @@ export const collapseAnimation =
                 height: '*',
                 opacity: '*'
             }),
-            animate('0.5s ease-in',
+            animate('0.3s ease-in',
                 style({
                     height: 0,
                     opacity: 0

@@ -1,1 +1,14 @@
-<p>enter works!</p>
+<div class="wrap center">
+  <form class="col">
+    <div class="col">
+      <label>Login</label>
+      <input type="text">
+    </div>
+    <div class="col">
+      <label>Password</label>
+      <input type="password">
+    </div>
+    <!-- <button type="submit" class="success">Enter</button> -->
+    <button [routerLink]="['/home']" routerLinkActive="router-link-active"  type="button" class="success">Enter</button>
+  </form>
+</div>

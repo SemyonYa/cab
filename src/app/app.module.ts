@@ -29,8 +29,6 @@ import { ErrorComponent } from './components/error/error.component';
     ErrorComponent,
   ],
   imports: [
-    // BrowserModule,
-    // BrowserAnimationsModule,
     AppRoutingModule,
     ComponentsModule,
     HttpClientModule

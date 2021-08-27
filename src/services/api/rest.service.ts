@@ -5,16 +5,14 @@ import { UiService } from '../ui.service';
 
 
 export abstract class RestService<T extends { id: string }> {
+  list$ = new BehaviorSubject<T[]>(null);
+
   private errorTimeout: any;
   protected route: string;
 
-  list$ = new BehaviorSubject<T[]>(null);
+  private get url(): string { return `${environment.baseUrl}${this.route}`; }
 
-  private get url(): string {
-    return `${environment.baseUrl}${this.route}`;
-  }
-
-  private handleError = (err: HttpErrorResponse) => {
+  handleError = (err: HttpErrorResponse) => {
     if (this.errorTimeout) clearTimeout(this.errorTimeout);
 
     let errorText: string;
@@ -33,10 +31,14 @@ export abstract class RestService<T extends { id: string }> {
   constructor(private http: HttpClient, private ui: UiService) { }
 
   getAll(): void {
+    this.list$.next(null);
     this.http.get<T[]>(this.url)
       .subscribe(
         items => {
-          this.list$.next(items);
+          // TODO: DELETE TIMEOUT
+          setTimeout(() => {
+            this.list$.next(items);
+          }, 1000);
         },
         this.handleError,
         () => {

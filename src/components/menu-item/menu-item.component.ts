@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MenuItem } from '../../models/menu-item';
 
 @Component({
   selector: 'i-menu-item',
@@ -12,5 +11,13 @@ export class MenuItemComponent {
   toggle() {
     this.menuItem.expanded = !this.menuItem.expanded;
   }
+}
 
+export interface MenuItem {
+  id: number,
+  title: string,
+  route?: string,
+  expanded: boolean,
+  children?: MenuItem[]
+  action?(): void;
 }

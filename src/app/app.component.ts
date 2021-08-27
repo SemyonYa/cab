@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { MenuItem } from 'src/components/menu-item/menu-item.component';
 import * as pkg from '../../package.json';
-import { MenuItem } from '../models/menu-item';
 
 @Component({
   selector: 'app-root',
@@ -31,7 +31,6 @@ export class AppComponent {
       .subscribe(
         e => {
           if (e instanceof NavigationEnd) {
-            console.log(e);
             this.isEnter = e.url === 'enter' || e.urlAfterRedirects === 'enter';
           }
         }
@@ -51,6 +50,6 @@ export class AppComponent {
   logout() {
     console.log('logout');
     this.modalShown = false;
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/');
   }
 }

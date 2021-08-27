@@ -10,6 +10,7 @@ import { titleAnimation } from '../../../animations/title.animation';
 export class HeaderComponent implements OnInit {
   @Input() title: string;
   @Input() subtitle: string;
+
   constructor() { }
 
   ngOnInit(): void {
