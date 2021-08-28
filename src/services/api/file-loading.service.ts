@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment'
 
 
@@ -10,14 +10,11 @@ export class FileLoadingService {
 
   constructor(private http: HttpClient) { }
 
-  upload(fileName: string, contentType: string, data: string) {
+  upload(formData: FormData) {
     // TODO real url
-    return this.http.post(`${environment.baseUrl}/qwewrtrdfhjfdfsdfzggn`,
-      {
-        // p_file_name: fileName,
-        // p_content_type: contentType,
-        // p_src: data
-      }
+    return this.http.post(`${environment.baseUrl}/images`,
+      { formData },
+      { headers: new HttpHeaders().append('Content-Type', 'multipart/form-data') }
     )
   }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { FileLoadingService } from '../../services/api/file-loading.service';
 
 @Component({
   selector: 'i-file-input',
@@ -6,24 +8,58 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./file-input.component.scss']
 })
 export class FileInputComponent implements OnInit {
+  // form: FormGroup = new FormGroup({
+
+  // });
   fileNames: string;
 
-  constructor() { }
+  constructor(private fileLoadingService: FileLoadingService) { }
 
   ngOnInit(): void { }
 
   onChange(e: Event) {
     console.log(e);
-    let scan: ArrayBuffer;
-    const selectedFiles: File[] = Array.from(e.target['files'] as FileList);
+    let fileData: ArrayBuffer;
+    console.log(e.target['files']);
+
+    const selectedFiles: File[] = Array.from(e.target['files']);
+    console.log(selectedFiles)
     this.fileNames = selectedFiles.map(f => f.name).join(', ') //remove
-    let fileReader: FileReader = new FileReader();
-    for (let file of selectedFiles) {
-      fileReader.onloadend = () => {
-        scan = fileReader.result as ArrayBuffer;
-      };
-      fileReader.readAsDataURL(file);
+
+    let formData = new FormData();
+    for (let index = 0; index < selectedFiles.length; index++) {
+      // formData.append('qwwe', 'qwe');
+      formData.append(`file${index}`, selectedFiles[index], `file${index}`);
     }
+    console.log("🚀 ~ file: file-input.component.ts ~ line 46 ~ FileInputComponent ~ onChange ~ formData", formData)
+    this.fileLoadingService.upload(formData)
+      .subscribe(
+        (res) => {
+          console.log(res);
+        },
+        (err) => {
+          console.log(err);
+        }
+      )
+
+    // let fileReader: FileReader = new FileReader();
+    // for (let file of selectedFiles) {
+    //   fileReader.onloadend = () => {
+    //     fileData = fileReader.result as ArrayBuffer;
+    //     if (fileData) {
+    //       this.fileLoadingService.upload(fileData)
+    //         .subscribe(
+    //           (res) => {
+    //             console.log(res);
+    //           },
+    //           (err) => {
+    //             console.log(err);
+    //           }
+    //         );
+    //     }
+    //   };
+    //   fileReader.readAsDataURL(file);
+    // }
   }
 
   // loadFile(e: Event) {

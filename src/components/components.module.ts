@@ -17,6 +17,7 @@ import { MenuItemComponent } from './menu-item/menu-item.component';
 import { ModalComponent } from './modal/modal.component';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { ToggleComponent } from './toggle/toggle.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -39,13 +40,17 @@ import { ToggleComponent } from './toggle/toggle.component';
     BrowserAnimationsModule,
     CommonModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    FormsModule, 
+    ReactiveFormsModule
   ],
   exports: [
     BrowserModule,
     BrowserAnimationsModule,
     CommonModule,
     HttpClientModule,
+    FormsModule, 
+    ReactiveFormsModule,
 
     CollapsibleComponent,
     BreadcrumbsComponent,
