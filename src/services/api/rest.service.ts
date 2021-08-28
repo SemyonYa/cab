@@ -22,7 +22,9 @@ export abstract class RestService<T extends { id: string }> {
       errorText = 'It\'s a SAD  :-(';
     }
 
-    this.ui.showError(`${new Date()} --- ${errorText}`);
+    this.list$.next([]);
+
+    this.ui.showError(`${errorText}`);
     this.errorTimeout = setTimeout(() => {
       this.ui.hideError();
     }, 5000);

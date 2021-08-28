@@ -1,3 +1,5 @@
 <button type="button" (click)="file.click()">IMAGES</button>
 <input #file type="file" multiple accept=".png, .jpg, .jpeg" (change)="onChange($event)">
-<p *ngIf="fileNames">{{fileNames}}</p>
+<div *ngIf="images" class="thumbs">
+    <div *ngFor="let image of images" class="thumbs-item" style="background-image: url({{image.thumb}});"></div>
+</div>

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment'
+import { Observable } from 'rxjs';
+import { Image } from '../../models/Image';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -10,11 +13,12 @@ export class FileLoadingService {
 
   constructor(private http: HttpClient) { }
 
-  upload(formData: FormData) {
-    // TODO real url
-    return this.http.post(`${environment.baseUrl}/images`,
-      { formData },
-      { headers: new HttpHeaders().append('Content-Type', 'multipart/form-data') }
-    )
+  upload(formData: FormData): Observable<Image[]> {
+    return this.http.post<Image[]>(`${environment.baseUrl}/images`, formData)
+      .pipe(
+        map(
+          (is: any[]) => is.map(i => new Image(i.id, i.name))
+        )
+      );
   }
 }
