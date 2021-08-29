@@ -28,7 +28,7 @@ export class UsersListComponent implements OnInit {
           this.filterUsers();
         }
       );
-    this.titles = ['ID', 'login', 'nAmE', 'role', 'age', 'Birthday'];
+    this.titles = ['ID', 'first name', 'last name', 'login', 'role', 'Birthday', 'activity'];
   }
 
   editUser(id: string) {
@@ -42,7 +42,7 @@ export class UsersListComponent implements OnInit {
   search(value: string) {
     this.searchValue = value;
     console.log(this.searchValue);
-    
+
     this.filterUsers();
   }
 
@@ -51,7 +51,7 @@ export class UsersListComponent implements OnInit {
       ? this.users
         .filter(
           u => {
-            const searchFields: string = [u.name, u.login, u.birth].join(' ').toLocaleLowerCase();
+            const searchFields: string = [u.lastName, u.firstName, u.login, u.birth].join(' ').toLocaleLowerCase();
             return this.searchValue
               ? searchFields.indexOf(this.searchValue) !== -1
               : true

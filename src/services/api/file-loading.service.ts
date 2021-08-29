@@ -14,7 +14,7 @@ export class FileLoadingService {
   constructor(private http: HttpClient) { }
 
   upload(formData: FormData): Observable<Image[]> {
-    return this.http.post<Image[]>(`${environment.baseUrl}/images`, formData)
+    return this.http.post<Image[]>(`${environment.baseUrl}/${environment.imagesDir}`, formData)
       .pipe(
         map(
           (is: any[]) => is.map(i => new Image(i.id, i.name))

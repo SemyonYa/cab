@@ -14,19 +14,21 @@ import { UsersListComponent } from './pages/users-list/users-list.component';
 import { UsersLockedComponent } from './pages/users-locked/users-locked.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ErrorComponent } from './components/error/error.component';
+import { SuccessComponent } from './components/success/success.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EnterComponent,
+    ErrorComponent,
     HeaderComponent,
     HomeComponent,
     ProfileComponent,
+    SuccessComponent,
     UsersComponent,
     UsersAddComponent,
     UsersLockedComponent,
     UsersListComponent,
-    ErrorComponent,
   ],
   imports: [
     AppRoutingModule,

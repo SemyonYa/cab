@@ -6,10 +6,28 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class UiService {
   error$ = new BehaviorSubject<string>(null);
+  success$ = new BehaviorSubject<string>(null);
 
   constructor() { }
 
+  hideAll() {
+    this.hideError();
+    this.hideSuccess();
+  }
+
+  // SUCCESS
+  showSuccess(text: string = 'Success') {
+    this.hideAll()
+    this.success$.next(text);
+  }
+
+  hideSuccess() {
+    this.success$.next(null);
+  }
+
+  // ERROR
   showError(text: string) {
+    this.hideAll()
     this.error$.next(text);
   }
 

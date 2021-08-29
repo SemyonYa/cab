@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { modalAnimation } from 'src/animations/modal.animation';
+import { modalAnimation } from '../../../animations/modal.animation';
 import { UiService } from '../../../services/ui.service';
 
 @Component({
-  selector: 'i-error',
-  templateUrl: './error.component.html',
-  styleUrls: ['./error.component.scss'],
+  selector: 'i-success',
+  templateUrl: './success.component.html',
+  styleUrls: ['./success.component.scss'],
   animations: [modalAnimation]
 })
-export class ErrorComponent implements OnInit {
+export class SuccessComponent implements OnInit {
   text: string;
 
   constructor(private uiService: UiService) { }
 
   ngOnInit() {
-    this.uiService.error$
+    this.uiService.success$
       .subscribe(
         text => {
           this.text = text;
@@ -23,7 +23,7 @@ export class ErrorComponent implements OnInit {
   }
 
   hide() {
-    this.uiService.hideError();
+    this.uiService.hideSuccess();
   }
 
 }

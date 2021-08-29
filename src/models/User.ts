@@ -1,8 +1,9 @@
-export interface User {
+export class User {
     id: string;
+    firstName: string;
+    lastName: string;
     login: string;
-    name: string;
     role: 'admin' | 'user';
-    age: number;
     birth: Date;
+    activated: boolean;
 }

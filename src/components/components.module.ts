@@ -18,6 +18,7 @@ import { ModalComponent } from './modal/modal.component';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { ToggleComponent } from './toggle/toggle.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormItemComponent } from './form-item/form-item.component';
 
 
 
@@ -26,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CollapsibleComponent,
     BreadcrumbsComponent,
     DropDownComponent,
+    FormItemComponent,
     GridComponent,
     GridRowComponent,
     FileInputComponent,
@@ -55,6 +57,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CollapsibleComponent,
     BreadcrumbsComponent,
     DropDownComponent,
+    FormItemComponent,
     GridComponent,
     GridRowComponent,
     FileInputComponent,
