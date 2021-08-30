@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http/http'
 import { BehaviorSubject, Observable } from 'rxjs'
+import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment'
 import { UiService } from '../ui.service';
 
@@ -59,7 +60,14 @@ export abstract class RestService<T extends { id: string }> {
   }
 
   post(item: T): Observable<T> {
-    return this.http.post<T>(this.url, this.formValueToSnake(item));
+    return this.http.post<T>(this.url, this.formValueToSnake(item))
+      .pipe(
+        map(
+          res => {
+            return this.responseToCamelCase(res) as T;
+          }
+        )
+      );
   }
 
   put(item: T): Observable<T> {
@@ -79,14 +87,26 @@ export abstract class RestService<T extends { id: string }> {
     console.log(typeof formValue['activated'] === 'boolean');
 
     for (let key in formValue) {
-      newValue[this.toSnake(key)] = (typeof formValue[key] === 'boolean')
+      newValue[key.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)] = (typeof formValue[key] === 'boolean')
         ? 1
         : formValue[key]
     }
     return newValue;
   }
 
-  private toSnake(s: string): string {
-    return s.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
+  // private toSnake(s: string): string {
+  //   return s.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
+  // }
+
+  private responseToCamelCase(response: any) {
+    var newObj = {};
+    for (let d in response) {
+      if (response.hasOwnProperty(d)) {
+        newObj[d.replace(/(\_\w)/g, function (k) {
+          return k[1].toUpperCase();
+        })] = response[d];
+      }
+    }
+    return newObj;
   }
 }

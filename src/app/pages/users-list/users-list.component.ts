@@ -35,6 +35,23 @@ export class UsersListComponent implements OnInit {
     this.editableUser = this.users.find(u => u.id == id);
   }
 
+  onDelete(id: number) {
+    console.log(id);
+    
+    this.editableUser = this.users.find(u => u.id == id.toString());
+    console.log(this.editableUser);
+  }
+
+  deleteUser(id: string) {
+    this.userRest.delete(id)
+      .subscribe(
+        res => {
+          console.log(res);
+          this.userRest.getAll();
+        }
+      );
+  }
+
   closeUser() {
     this.editableUser = null;
   }
@@ -53,7 +70,7 @@ export class UsersListComponent implements OnInit {
           u => {
             const searchFields: string = [u.lastName, u.firstName, u.login, u.birth].join(' ').toLocaleLowerCase();
             return this.searchValue
-              ? searchFields.indexOf(this.searchValue) !== -1
+              ? searchFields.indexOf(this.searchValue.toLocaleLowerCase()) !== -1
               : true
           }
         )

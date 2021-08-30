@@ -5,7 +5,7 @@
 
   <i-search-input (onChange)="search($event)"></i-search-input>
   <i-grid *ngIf="filteredUsers" [items]="filteredUsers" [titles]="titles" [withEdit]="true" [withDelete]="true"
-    (onEditItem)="editUser($event)" (onDeleteItem)="editUser($event)"></i-grid>
+    (onEditItem)="editUser($event)" (onDeleteItem)="onDelete($event)"></i-grid>
   <div class="center">
     <i-in-progress *ngIf="!filteredUsers" size="36px" margin="48px"></i-in-progress>
   </div>
@@ -13,8 +13,8 @@
 
 
 <!-- MODAL -->
-<i-modal *ngIf="editableUser" (onCancel)="closeUser()" (onOk)="closeUser()">
-  <p><strong>{{editableUser.name}}</strong></p>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet repellat expedita nobis.</p>
-  <pre>{{editableUser | json}}</pre>
+<i-modal *ngIf="editableUser" (onCancel)="closeUser()" (onOk)="deleteUser()">
+  <p><strong>Delete {{editableUser.firstName}} {{editableUser.lastName}}</strong></p>
+  <p>Are you sure?</p>
+  <!-- <pre>{{editableUser | json}}</pre> -->
 </i-modal>
