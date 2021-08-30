@@ -1,0 +1,43 @@
+<div class="wrap col">
+    <h1>[Constructor]</h1>
+    <form [formGroup]="form" (ngSubmit)="submit()" class="col">
+        <div class="parent">
+            <i-form-item [form]="form" control="title">
+                <label>Title</label>
+                <input type="text" formControlName="title">
+            </i-form-item>
+            <i-form-item [form]="form" control="subtitle">
+                <label>Subtitle</label>
+                <input type="text" formControlName="subtitle">
+            </i-form-item>
+            <i-form-item [form]="form" control="createdAt">
+                <label>Created At</label>
+                <input type="datetime-local" formControlName="createdAt">
+            </i-form-item>
+            <i-form-item [form]="form" control="authorName">
+                <label>Author name</label>
+                <input type="text" formControlName="authorName">
+            </i-form-item>
+            <i-form-item [form]="form" control="tag">
+                <label>Tag</label>
+                <input type="text" formControlName="tag">
+            </i-form-item>
+            <i-form-item [form]="form" control="thumb">
+                <label>Thumb</label>
+                <input type="text" formControlName="thumb">
+            </i-form-item>
+        </div>
+
+        <fieldset class="children">
+            <legend>Ctor items</legend>
+            <ng-container *ngFor="let item of ctor.items; let last = last">
+                <i-ctor-item [item]="item" (onAdd)="addItem($event)"></i-ctor-item>
+                <hr *ngIf="!last">
+            </ng-container>
+        </fieldset>
+
+        <button type="submit" [disabled]="form.invalid" class="success">
+            Save
+        </button>
+    </form>
+</div>

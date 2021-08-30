@@ -1,0 +1,27 @@
+.wrap {
+  form {
+    .parent {
+      max-width: 400px;
+    }
+
+    fieldset.children {
+      border: solid 1px var(--color-primary);
+      border-radius: 8px;
+      min-height: 100px;
+
+      legend {
+        padding: 0 10px;
+        font-size: 16px;
+      }
+
+      hr {
+        //   width: 40%;
+          margin: 20px 30%;
+      }
+    }
+
+    button {
+      align-self: flex-start;
+    }
+  }
+}
