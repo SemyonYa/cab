@@ -22,8 +22,9 @@ export class AppComponent {
         { id: 22, title: 'Locked', route: 'users/locked', expanded: false, children: [] },
       ]
     },
-    { id: 3, title: 'Profile', route: 'profile', expanded: false },
-    { id: 4, title: 'Logout', expanded: false, action: this.showModal.bind(this) },
+    { id: 3, title: 'Articles', route: 'articles', expanded: false },
+    { id: 4, title: 'Profile', route: 'profile', expanded: false },
+    { id: 5, title: 'Logout', expanded: false, action: this.showModal.bind(this) },
   ];
 
   constructor(private router: Router) {

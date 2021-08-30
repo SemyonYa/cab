@@ -19,13 +19,17 @@ import { SearchInputComponent } from './search-input/search-input.component';
 import { ToggleComponent } from './toggle/toggle.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormItemComponent } from './form-item/form-item.component';
+import { CtorComponent } from './ctor/ctor.component';
+import { CtorItemComponent } from './ctor/ctor-item/ctor-item.component';
 
 
 
 @NgModule({
   declarations: [
-    CollapsibleComponent,
     BreadcrumbsComponent,
+    CollapsibleComponent,
+    CtorComponent,
+    CtorItemComponent,
     DropDownComponent,
     FormItemComponent,
     GridComponent,
@@ -36,6 +40,7 @@ import { FormItemComponent } from './form-item/form-item.component';
     ModalComponent,
     SearchInputComponent,
     ToggleComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -43,7 +48,7 @@ import { FormItemComponent } from './form-item/form-item.component';
     CommonModule,
     HttpClientModule,
     RouterModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule
   ],
   exports: [
@@ -51,11 +56,13 @@ import { FormItemComponent } from './form-item/form-item.component';
     BrowserAnimationsModule,
     CommonModule,
     HttpClientModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
 
-    CollapsibleComponent,
     BreadcrumbsComponent,
+    CollapsibleComponent,
+    CtorComponent,
+    CtorItemComponent,
     DropDownComponent,
     FormItemComponent,
     GridComponent,

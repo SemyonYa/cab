@@ -15,6 +15,7 @@ import { UsersLockedComponent } from './pages/users-locked/users-locked.componen
 import { HttpClientModule } from '@angular/common/http';
 import { ErrorComponent } from './components/error/error.component';
 import { SuccessComponent } from './components/success/success.component';
+import { ArticlesComponent } from './pages/articles/articles.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { SuccessComponent } from './components/success/success.component';
     UsersAddComponent,
     UsersLockedComponent,
     UsersListComponent,
+    ArticlesComponent,
   ],
   imports: [
     AppRoutingModule,
