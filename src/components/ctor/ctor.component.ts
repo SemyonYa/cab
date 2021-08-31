@@ -20,10 +20,18 @@ export class CtorComponent implements OnInit {
     tag: new FormControl(''),
   });
 
+  get ctorItemFormsValid(): boolean {
+    return this.ctor.items?.length > 0 ? this.ctor.items.map(c => !!(c.value?.trim())).reduce((prev, cur) => prev && cur) : true;
+  }
+
   constructor() { }
 
   ngOnInit(): void {
     this.ctor = new Ctor();
+    this.ctor.items = null;
+    setTimeout(() => {
+      this.ctor.items = [new CtorItem()];
+    }, 500);
     this.form.valueChanges
       .subscribe(
         values => {
@@ -35,13 +43,21 @@ export class CtorComponent implements OnInit {
         });
   }
 
-  addItem(item: CtorItem) {
-    this.ctor.items.push(new CtorItem());
+  addItem(afterItem: CtorItem = null) {
+    if (afterItem) {
+      const afterItemIndex: number = this.ctor.items.indexOf(afterItem);
+      this.ctor.items = [
+        ...this.ctor.items.slice(0, afterItemIndex + 1),
+        new CtorItem(),
+        ...this.ctor.items.slice(afterItemIndex + 1)
+      ];
+    } else {
+      this.ctor.items.push(new CtorItem());
+    }
   }
 
-  removeItem(item: CtorItem) {
-    console.log('REMOVE', item);
-
+  removeItem(index: number) {
+    this.ctor.items.splice(index, 1);
   }
 
   submit() {

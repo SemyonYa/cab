@@ -9,8 +9,9 @@ import { CtorItem } from 'src/models/Ctor';
 })
 export class CtorItemComponent implements OnInit {
   @Input() item: CtorItem;
+  @Input() index: number;
   @Output() onAdd = new EventEmitter<CtorItem>();
-  // @Output() onSave = new EventEmitter<CtorItem>();
+  @Output() onRemove = new EventEmitter<number>();
 
   form: FormGroup = new FormGroup({
     type: new FormControl(CtorItemType.Text, [Validators.required]),
@@ -40,12 +41,14 @@ export class CtorItemComponent implements OnInit {
 
   submit() {
     console.log(this.form.value);
-    // ???? as link 
-    // this.onSave.emit(this.form.value as CtorItem);
   }
 
   add() {
     this.onAdd.emit(this.item)
+  }
+
+  remove() {
+    this.onRemove.emit(this.index)
   }
 }
 

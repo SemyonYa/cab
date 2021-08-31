@@ -7,7 +7,7 @@ export class Ctor {
     createdAt: Date;
     authorName: string;
     authorId: string;
-    thumb: number;
+    thumbId: number;
     tag: string;
     items: CtorItem[];
 
@@ -21,8 +21,13 @@ export class CtorItem {
     /** CtorItemType */
     type: string;
     value: string;
+    ctorId: number;
 
-    constructor() {
+    constructor(ctorId: number = null) {
         this.type = CtorItemType.Text;
+
+        if (ctorId) {
+            this.ctorId = ctorId;
+        }
     }
 }

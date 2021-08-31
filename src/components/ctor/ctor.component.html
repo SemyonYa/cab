@@ -1,43 +1,58 @@
 <div class="wrap col">
-    <h1>[Constructor]</h1>
-    <form [formGroup]="form" (ngSubmit)="submit()" class="col">
-        <div class="parent">
-            <i-form-item [form]="form" control="title">
-                <label>Title</label>
-                <input type="text" formControlName="title">
-            </i-form-item>
-            <i-form-item [form]="form" control="subtitle">
-                <label>Subtitle</label>
-                <input type="text" formControlName="subtitle">
-            </i-form-item>
-            <i-form-item [form]="form" control="createdAt">
-                <label>Created At</label>
-                <input type="datetime-local" formControlName="createdAt">
-            </i-form-item>
-            <i-form-item [form]="form" control="authorName">
-                <label>Author name</label>
-                <input type="text" formControlName="authorName">
-            </i-form-item>
-            <i-form-item [form]="form" control="tag">
-                <label>Tag</label>
-                <input type="text" formControlName="tag">
-            </i-form-item>
-            <i-form-item [form]="form" control="thumb">
-                <label>Thumb</label>
-                <input type="text" formControlName="thumb">
-            </i-form-item>
-        </div>
+  <h1>[Constructor]</h1>
+  <form [formGroup]="form" (ngSubmit)="submit()" class="col">
+    <div class="parent">
+      <i-form-item [form]="form" control="title">
+        <label>Title</label>
+        <input type="text" formControlName="title">
+      </i-form-item>
+      <i-form-item [form]="form" control="subtitle">
+        <label>Subtitle</label>
+        <input type="text" formControlName="subtitle">
+      </i-form-item>
+      <i-form-item [form]="form" control="createdAt">
+        <label>Created At</label>
+        <input type="datetime-local" formControlName="createdAt">
+      </i-form-item>
+      <i-form-item [form]="form" control="authorName">
+        <label>Author name</label>
+        <input type="text" formControlName="authorName">
+      </i-form-item>
+      <i-form-item [form]="form" control="tag">
+        <label>Tag</label>
+        <input type="text" formControlName="tag">
+      </i-form-item>
+      <i-form-item [form]="form" control="thumb">
+        <label>Thumb</label>
+        <input type="text" formControlName="thumb">
+      </i-form-item>
+    </div>
 
-        <fieldset class="children">
-            <legend>Ctor items</legend>
-            <ng-container *ngFor="let item of ctor.items; let last = last">
-                <i-ctor-item [item]="item" (onAdd)="addItem($event)"></i-ctor-item>
-                <hr *ngIf="!last">
-            </ng-container>
-        </fieldset>
+    <fieldset class="children">
+      <legend>Ctor items</legend>
+      <i-collapsible [expanded]="!!ctor.items">
+        <ng-container *ngFor="let item of ctor.items, let index = index; let last = last">
+          <i-ctor-item [item]="item" [index]="index" (onAdd)="addItem($event)" (onRemove)="removeItem($event)">
+          </i-ctor-item>
+          <hr *ngIf="!last">
+        </ng-container>
+      </i-collapsible>
 
-        <button type="submit" [disabled]="form.invalid" class="success">
-            Save
+      <div *ngIf="ctor.items?.length === 0" class="empty-list">
+        Empty list
+        <button type="button" (click)="addItem()" class="add-item">
+          Добавить
+          <img src="/assets/icons/plus-success.svg" alt="ADD">
         </button>
-    </form>
+      </div>
+
+      <div *ngIf="!ctor.items" class="center">
+        <i-in-progress size="36px" margin="48px"></i-in-progress>
+      </div>
+    </fieldset>
+
+    <button type="submit" [disabled]="form.invalid && !ctorItemFormsValid" class="success">
+      Save
+    </button>
+  </form>
 </div>

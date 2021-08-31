@@ -1,23 +1,26 @@
 <form (ngSubmit)="submit()" [formGroup]="form" class="col">
-    <i-form-item [form]="form" control="type">
-        <label>Select type</label>
-        <div class="row">
-            <select formControlName="type">
-                <option *ngFor="let type of types" [value]="type">{{type}}</option>
-            </select>
-            <button type="button" class="icon" (click)="add()">
-                <img src="/assets/icons/plus.svg" alt="ADD">
-            </button>
-        </div>
-    </i-form-item>
-    <!-- IMAGE -->
-    <i-form-item *ngIf="selectedType === 'Image'" [form]="form" control="value">
-        <label>Value</label>
-        <i-file-input></i-file-input>
-    </i-form-item>
-    <!-- OTHER -->
-    <i-form-item *ngIf="selectedType !== 'Image'" [form]="form" control="value">
-        <label>Value</label>
-        <textarea type="text" formControlName="value" rows="4"></textarea>
-    </i-form-item>
+  <div class="row">
+    <p>[Constructor item #{{index}}]</p>
+    <button type="button" class="icon add" (click)="add()">
+      <img src="/assets/icons/plus-success.svg" alt="ADD">
+    </button>
+    <button type="button" class="icon remove" (click)="remove()">
+      <img src="/assets/icons/trash.svg" alt="REMOVE">
+    </button>
+  </div>
+  <i-form-item [form]="form" control="type">
+    <select formControlName="type">
+      <option *ngFor="let type of types" [value]="type">{{type}}</option>
+    </select>
+  </i-form-item>
+  <!-- IMAGE -->
+  <i-form-item *ngIf="selectedType === 'Image'" [form]="form" control="value">
+    <label>Value</label>
+    <i-file-input></i-file-input>
+  </i-form-item>
+  <!-- OTHER -->
+  <i-form-item *ngIf="selectedType !== 'Image'" [form]="form" control="value">
+    <label>Value</label>
+    <textarea type="text" formControlName="value" rows="4"></textarea>
+  </i-form-item>
 </form>
