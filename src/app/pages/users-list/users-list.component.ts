@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { titleAnimation } from '../../../animations/title.animation';
 import { UserRestService } from '../../../services/api/user.rest.service'
 import { User } from '../../../models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'i-users-list',
@@ -17,7 +18,10 @@ export class UsersListComponent implements OnInit {
   filteredUsers: User[];
   editableUser: User;
 
-  constructor(private userRest: UserRestService) { }
+  constructor(
+    private userRest: UserRestService,
+    private rotuer: Router
+  ) { }
 
   ngOnInit(): void {
     this.userRest.getAll();
@@ -31,24 +35,24 @@ export class UsersListComponent implements OnInit {
     this.titles = ['ID', 'first name', 'last name', 'login', 'role', 'Birthday', 'activity'];
   }
 
-  editUser(id: string) {
-    this.editableUser = this.users.find(u => u.id == id);
+  editUser(id: number) {
+    this.rotuer.navigateByUrl(`/users/edit/${id}`)
   }
 
   onDelete(id: number) {
-    console.log(id);
-    
-    this.editableUser = this.users.find(u => u.id == id.toString());
+    this.editableUser = this.users.find(u => u.id == id);
     console.log(this.editableUser);
   }
 
-  deleteUser(id: string) {
-    this.userRest.delete(id)
+  deleteUser() {
+    this.userRest.delete(this.editableUser.id)
       .subscribe(
         res => {
           console.log(res);
           this.userRest.getAll();
-        }
+          this.editableUser = null;
+        },
+        this.userRest.handleError
       );
   }
 

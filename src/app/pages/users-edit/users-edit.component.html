@@ -1,0 +1,45 @@
+<div class="wrap col">
+    <h3>Edit user</h3>
+    <form *ngIf="form" [formGroup]="form" (ngSubmit)="submit()" class="col" @titleAnimation>
+        <i-form-item control="firstName" [form]="form">
+            <label>First name</label>
+            <input formControlName="firstName" type="text">
+        </i-form-item>
+
+        <i-form-item control="lastName" [form]="form">
+            <label>Last name</label>
+            <input formControlName="lastName" type="text">
+        </i-form-item>
+
+        <i-form-item control="login" [form]="form">
+            <label>Login</label>
+            <input formControlName="login" type="text">
+        </i-form-item>
+
+        <i-form-item control="role" [form]="form">
+            <label>Role</label>
+            <select formControlName="role">
+                <option value="user">user</option>
+                <option value="admin">admin</option>
+            </select>
+        </i-form-item>
+
+        <i-form-item control="birth" [form]="form">
+            <label>Birthday</label>
+            <input formControlName="birth" type="date">
+        </i-form-item>
+
+        <i-form-item control="activated" [form]="form">
+            <div class="row">
+                <input id="activated" formControlName="activated" type="checkbox">
+                <label for="activated">Activated</label>
+            </div>
+        </i-form-item>
+
+        <button type="submit" [disabled]="form.invalid" class="success">Save</button>
+    </form>
+
+    <div class="center">
+        <i-in-progress *ngIf="!form" size="36px" margin="48px"></i-in-progress>
+    </div>
+</div>

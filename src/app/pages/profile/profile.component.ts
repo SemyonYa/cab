@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   constructor(private userRest: UserRestService) { }
 
   ngOnInit(): void {
-    this.userRest.get('1')
+    this.userRest.get(1)
       .subscribe(
         u => {
           this.user = u;
