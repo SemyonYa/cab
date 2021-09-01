@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CtorItem } from 'src/models/Ctor';
+import { Image } from 'src/models/Image';
 
 @Component({
   selector: 'i-ctor-item',
@@ -37,6 +38,10 @@ export class CtorItemComponent implements OnInit {
           }
         }
       );
+  }
+
+  selectThumb(image: Image) {
+    this.form.patchValue({ value: image.id })
   }
 
   submit() {

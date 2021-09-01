@@ -18,3 +18,19 @@
 .ng-invalid {
   border-color: var(--color-danger);
 }
+
+button.add-item {
+  margin-bottom: 12px;
+  border: solid 1px var(--color-success);
+  align-self: center;
+  min-width: 30%;
+
+  img {
+      margin-left: 4px;
+  }
+}
+
+i-file-input {
+  display: block;
+  margin-bottom: 12px;
+}

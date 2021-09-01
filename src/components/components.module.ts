@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormItemComponent } from './form-item/form-item.component';
 import { CtorComponent } from './ctor/ctor.component';
 import { CtorItemComponent } from './ctor/ctor-item/ctor-item.component';
+import { ImageLibraryModalComponent } from './file-input/image-library-modal/image-library-modal.component';
 
 
 
@@ -40,6 +41,7 @@ import { CtorItemComponent } from './ctor/ctor-item/ctor-item.component';
     ModalComponent,
     SearchInputComponent,
     ToggleComponent,
+    ImageLibraryModalComponent,
 
   ],
   imports: [

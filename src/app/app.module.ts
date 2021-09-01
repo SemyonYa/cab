@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ErrorComponent } from './components/error/error.component';
 import { SuccessComponent } from './components/success/success.component';
 import { ArticlesComponent } from './pages/articles/articles.component';
+import { UsersEditComponent } from './pages/users-edit/users-edit.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ArticlesComponent } from './pages/articles/articles.component';
     UsersLockedComponent,
     UsersListComponent,
     ArticlesComponent,
+    UsersEditComponent,
   ],
   imports: [
     AppRoutingModule,

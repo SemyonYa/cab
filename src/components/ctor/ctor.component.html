@@ -22,9 +22,10 @@
         <label>Tag</label>
         <input type="text" formControlName="tag">
       </i-form-item>
-      <i-form-item [form]="form" control="thumb">
+      <i-form-item [form]="form" control="thumbId">
         <label>Thumb</label>
-        <input type="text" formControlName="thumb">
+        <input type="text" formControlName="thumbId" class="none" readonly>
+        <i-file-input (onSelect)="selectThumb($event)"></i-file-input>
       </i-form-item>
     </div>
 
@@ -51,8 +52,10 @@
       </div>
     </fieldset>
 
-    <button type="submit" [disabled]="form.invalid && !ctorItemFormsValid" class="success">
-      Save
+    <!-- <button type="submit" [disabled]="form.invalid && !ctorItemFormsValid" class="success"> -->
+    <button type="submit" [disabled]="!valid" class="success"> 
+      Save 
+      <img src="/assets/icons/done.svg" alt="SAVE">
     </button>
   </form>
 </div>

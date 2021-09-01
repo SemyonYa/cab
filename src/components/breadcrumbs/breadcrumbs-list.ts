@@ -13,6 +13,10 @@ export const breadcrumbs: { [key: string]: BreadcrumbsItem[] } = {
         new BreadcrumbsItem('Users', '/users'),
         new BreadcrumbsItem('Add', '')
     ],
+    '/users/edit': [
+        new BreadcrumbsItem('Users', '/users'),
+        new BreadcrumbsItem('Edit', '')
+    ],
     '/users/locked': [
         new BreadcrumbsItem('Users', '/users'),
         new BreadcrumbsItem('Locked', '')

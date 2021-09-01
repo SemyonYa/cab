@@ -6,19 +6,15 @@ button {
   margin-bottom: 12px;
 }
 
-.thumbs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 12px;
+.preview {
+  width: 100px;
+  height: 100px;
+  margin: 6px 0;
+}
 
-  &-item {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    border-radius: 16px;
-    width: 160px;
-    height: 100px;
-    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.02);
-  }
+.close-uploaded {
+  margin: 6px 0 12px;
+  text-decoration: dotted 1px underline;
+  font-size: 11px;
+  cursor: pointer;
 }

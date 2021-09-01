@@ -5,7 +5,7 @@
     }
 
     fieldset.children {
-      border: solid 1px var(--color-primary);
+      border: solid 1px var(--color-secondary);
       border-radius: 8px;
       min-height: 100px;
 
@@ -15,18 +15,19 @@
       }
 
       hr {
-        //   width: 40%;
         margin: 20px 30%;
       }
     }
 
-    &>button {
+    & > button {
       align-self: flex-start;
     }
 
     button.add-item {
       margin-top: 12px;
-      border: solid 2px var(--color-success);
+      border: solid 1px var(--color-success);
+      align-self: center;
+      min-width: 30%;
     }
   }
 }

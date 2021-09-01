@@ -5,7 +5,7 @@ import { environment } from '../../environments/environment'
 import { UiService } from '../ui.service';
 
 
-export abstract class RestService<T extends { id: string }> {
+export abstract class RestService<T extends { id: number }> {
   list$ = new BehaviorSubject<T[]>(null);
 
   private errorTimeout: any;
@@ -17,7 +17,6 @@ export abstract class RestService<T extends { id: string }> {
     if (this.errorTimeout) clearTimeout(this.errorTimeout);
 
     let errorText: string;
-    console.log(err);
 
     if (err.status === 422) {
       errorText = (err.error as any[]).map(e => e.message).join('\n');
@@ -41,51 +40,84 @@ export abstract class RestService<T extends { id: string }> {
   getAll(): void {
     this.list$.next(null);
     this.http.get<T[]>(this.url)
+      .pipe(
+        map(
+          (items: any[]) => {
+            return items.map(item => this.responseToCamelCase(item) as T)
+          }
+        )
+      )
       .subscribe(
         items => {
           // TODO: DELETE TIMEOUT
-          setTimeout(() => {
-            this.list$.next(items);
-          }, 1000);
+          // setTimeout(() => {
+          this.list$.next(items);
+          // }, 1000);
         },
         this.handleError,
-        () => {
-          console.log('COMPLETE');
-        }
+        // () => {
+        //   console.log('COMPLETE');
+        // }
       )
   }
 
-  get(id: string): Observable<T> {
-    return this.http.get<T>(`${this.url}/${id}`);
+  get(id: number): Observable<T> {
+    return this.http.get<T>(`${this.url}/${id}`)
+      .pipe(
+        map(
+          (item: any) => {
+            return this.responseToCamelCase(item) as T;
+          }
+        )
+      );
   }
 
   post(item: T): Observable<T> {
     return this.http.post<T>(this.url, this.formValueToSnake(item))
       .pipe(
         map(
-          res => {
-            return this.responseToCamelCase(res) as T;
+          item => {
+            return this.responseToCamelCase(item) as T;
           }
         )
       );
   }
 
-  put(item: T): Observable<T> {
-    return this.http.put<T>(`${this.url}/${item.id}`, this.formValueToSnake(item));
+  put(item: T, id: number): Observable<T> {
+    return this.http.put<T>(`${this.url}/${id}`, this.formValueToSnake(item))
+      .pipe(
+        map(
+          item => {
+            return this.responseToCamelCase(item) as T;
+          }
+        )
+      );
   }
 
   patch(partialItem: Partial<T>, id: string): Observable<T> {
-    return this.http.patch<T>(`${this.url}/${id}`, this.formValueToSnake(partialItem));
+    return this.http.patch<T>(`${this.url}/${id}`, this.formValueToSnake(partialItem))
+      .pipe(
+        map(
+          item => {
+            return this.responseToCamelCase(item) as T;
+          }
+        )
+      );
   }
 
-  delete(id: string): Observable<T> {
-    return this.http.delete<T>(`${this.url}/${id}`);
+  delete(id: number): Observable<T> {
+    return this.http.delete<T>(`${this.url}/${id}`)
+      .pipe(
+        map(
+          item => {
+            return this.responseToCamelCase(item) as T;
+          }
+        )
+      );
   }
 
   private formValueToSnake(formValue: any) {
     let newValue = {};
-    console.log(typeof formValue['activated'] === 'boolean');
-
     for (let key in formValue) {
       newValue[key.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)] = (typeof formValue[key] === 'boolean')
         ? 1

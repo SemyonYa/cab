@@ -8,7 +8,7 @@ import { UiService } from '../ui.service';
   providedIn: 'root'
 })
 export class CtorRestService extends RestService<Ctor> {
-  route = '/ctor';
+  route = '/ctors';
 
   constructor(http: HttpClient, ui: UiService) {
     super(http, ui);

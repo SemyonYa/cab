@@ -1,7 +1,7 @@
 import { CtorItemType } from "src/components/ctor/ctor-item/ctor-item.component";
 
 export class Ctor {
-    id: string;
+    id: number;
     title: string;
     subtitle: string;
     createdAt: Date;

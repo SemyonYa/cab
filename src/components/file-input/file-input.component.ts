@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Image } from 'src/models/Image';
 import { FileLoadingService } from '../../services/api/file-loading.service';
@@ -11,6 +11,10 @@ import { FileLoadingService } from '../../services/api/file-loading.service';
 export class FileInputComponent implements OnInit {
   fileNames: string;
   images: Image[];
+  libraryShown: boolean = false;
+  selectedImage: Image;
+
+  @Output() onSelect = new EventEmitter<Image>();
 
   constructor(private fileLoadingService: FileLoadingService) { }
 
@@ -33,5 +37,22 @@ export class FileInputComponent implements OnInit {
           console.log(err);
         }
       );
+  }
+
+  closeUploaded() {
+    this.images = null;
+  }
+
+  showLibrary() {
+    this.libraryShown = true;
+  }
+
+  hideLibrary() {
+    this.libraryShown = false;
+  }
+
+  selectImage(image: Image) {
+    this.selectedImage = image;
+    this.onSelect.emit(image);
   }
 }

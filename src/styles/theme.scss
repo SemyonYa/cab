@@ -92,19 +92,26 @@ button img {
 /*
   INPUTS
 */
-ng-valid {}
+ng-valid {
+}
 
-ng-invalid {}
+ng-invalid {
+}
 
-ng-pending {}
+ng-pending {
+}
 
-ng-pristine {}
+ng-pristine {
+}
 
-ng-dirty {}
+ng-dirty {
+}
 
-ng-untouched {}
+ng-untouched {
+}
 
-ng-touched {}
+ng-touched {
+}
 
 input,
 textarea {
@@ -150,6 +157,34 @@ select {
   font-size: 14px;
   outline: solid 1px rgba(0, 0, 0, 0.02);
   background-color: white;
+}
+
+/*
+  IMAGE INPUT
+*/
+.thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.thumbs-item {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-clip: content-box;
+  border-radius: 8px;
+  border: solid 2px transparent;
+  padding: 0px;
+  width: 60px;
+  height: 60px;
+  transition: 0.1s;
+  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.02);
+}
+
+.thumbs-item.selected {
+  border-color: var(--color-success);
+  padding: 2px;
 }
 
 /*

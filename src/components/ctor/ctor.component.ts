@@ -1,7 +1,8 @@
-import { formatDate } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Image } from 'src/models/Image';
 import { Ctor, CtorItem } from '../../models/Ctor';
+import { CtorRestService } from '../../services/api/ctor.rest.service';
 
 @Component({
   selector: 'i-ctor',
@@ -16,31 +17,37 @@ export class CtorComponent implements OnInit {
     subtitle: new FormControl(''),
     createdAt: new FormControl(),
     authorName: new FormControl(''),
-    thumb: new FormControl(''),
+    thumbId: new FormControl(''),
     tag: new FormControl(''),
   });
 
-  get ctorItemFormsValid(): boolean {
-    return this.ctor.items?.length > 0 ? this.ctor.items.map(c => !!(c.value?.trim())).reduce((prev, cur) => prev && cur) : true;
+  // get ctorItemFormsValid(): boolean {
+  //   return this.ctor.items?.length > 0 ? this.ctor.items.map(c => !!c.value).reduce((prev, cur) => prev && cur) : true;
+  // }
+
+  get valid(): boolean {
+    return (this.ctor.items?.length > 0 ? this.ctor.items.map(c => !!c.value).reduce((prev, cur) => prev && cur) : true) && this.form.valid;
   }
 
-  constructor() { }
+  constructor(private ctorRest: CtorRestService) { }
 
   ngOnInit(): void {
     this.ctor = new Ctor();
-    this.ctor.items = null;
-    setTimeout(() => {
-      this.ctor.items = [new CtorItem()];
-    }, 500);
+    this.ctor.items = [new CtorItem()];
     this.form.valueChanges
       .subscribe(
         values => {
           for (let key in values) {
             this.ctor[key] = values[key];
           }
-          console.log(values);
-          console.log(this.ctor);
+          // console.log(values);
+          // console.log(this.ctor);
         });
+    this.form.updateValueAndValidity();
+  }
+
+  selectThumb(image: Image) {
+    this.form.patchValue({ thumbId: image.id });
   }
 
   addItem(afterItem: CtorItem = null) {
@@ -61,7 +68,15 @@ export class CtorComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.form.value);
+    console.log(this.ctor);
+    console.log(Object.assign({}, this.ctor));
+    this.ctorRest.post(this.ctor)
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        this.ctorRest.handleError
+      )
   }
 
 }
