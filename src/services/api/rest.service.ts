@@ -11,7 +11,7 @@ export abstract class RestService<T extends { id: number }> {
   private errorTimeout: any;
   protected route: string;
 
-  private get url(): string { return `${environment.baseUrl}${this.route}`; }
+  protected get url(): string { return `${environment.baseUrl}${this.route}`; }
 
   handleError = (err: HttpErrorResponse) => {
     if (this.errorTimeout) clearTimeout(this.errorTimeout);
@@ -35,7 +35,7 @@ export abstract class RestService<T extends { id: number }> {
     }, 5000);
   }
 
-  constructor(private http: HttpClient, private ui: UiService) { }
+  constructor(protected http: HttpClient, protected ui: UiService) { }
 
   getAll(): void {
     this.list$.next(null);
@@ -116,7 +116,7 @@ export abstract class RestService<T extends { id: number }> {
       );
   }
 
-  private formValueToSnake(formValue: any) {
+  protected formValueToSnake(formValue: any) {
     let newValue = {};
     for (let key in formValue) {
       newValue[key.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)] = (typeof formValue[key] === 'boolean')
@@ -130,7 +130,7 @@ export abstract class RestService<T extends { id: number }> {
   //   return s.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
   // }
 
-  private responseToCamelCase(response: any) {
+  protected responseToCamelCase(response: any) {
     var newObj = {};
     for (let d in response) {
       if (response.hasOwnProperty(d)) {

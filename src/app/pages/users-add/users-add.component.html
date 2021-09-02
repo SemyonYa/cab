@@ -37,6 +37,21 @@
       </div>
     </i-form-item>
 
+    <i-form-item control="password" [form]="form">
+      <label>Password</label>
+      <input formControlName="password" type="password">
+    </i-form-item>
+
+    <i-form-item control="passwordConfirm" [form]="form">
+      <label>Password (confirm)</label>
+      <input formControlName="passwordConfirm" type="password">
+    </i-form-item>
+
+    <i-collapsible
+      [expanded]="!!form.errors?.password && form.controls['password'].touched && form.controls['passwordConfirm'].touched">
+      <p class="error">Password != Password (confirm)</p>
+    </i-collapsible>
+
     <button type="submit" [disabled]="form.invalid" class="success">Save</button>
   </form>
 </div>

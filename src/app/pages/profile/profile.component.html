@@ -1,18 +1,64 @@
 <i-header title="Profile page" subtitle="Profile page subtitle"></i-header>
+<div class="page wrap">
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="submit()" class="col" @titleAnimation>
+    <i-form-item control="firstName" [form]="form">
+      <label>First name</label>
+      <input formControlName="firstName" type="text">
+    </i-form-item>
 
-<div *ngIf="user; else inProgress" class="page profile" @titleAnimation>
-  <div class="col">
-    <label>Name</label>
-    <input type="text" [value]="user.name">
-  </div>
-  <div class="col">
-    <label>Login</label>
-    <input type="text" [value]="user.login" readonly>
+    <i-form-item control="lastName" [form]="form">
+      <label>Last name</label>
+      <input formControlName="lastName" type="text">
+    </i-form-item>
+
+    <i-form-item control="login" [form]="form">
+      <label>Login</label>
+      <input formControlName="login" type="text" disabled>
+    </i-form-item>
+
+    <i-form-item control="role" [form]="form">
+      <label>Role</label>
+      <select formControlName="role" disabled>
+        <option value="user">user</option>
+        <option value="admin">admin</option>
+      </select>
+    </i-form-item>
+
+    <i-form-item control="birth" [form]="form">
+      <label>Birthday</label>
+      <input formControlName="birth" type="date">
+    </i-form-item>
+    <!-- 
+    <i-form-item control="activated" [form]="form">
+      <div class="row">
+        <input id="activated" formControlName="activated" type="checkbox" disabled>
+        <label for="activated">Activated</label>
+      </div>
+    </i-form-item> -->
+    
+    <hr>
+
+    <!-- <h3>Reset password</h3> -->
+
+    <i-form-item control="password" [form]="form">
+      <label>Password</label>
+      <input formControlName="password" type="password">
+    </i-form-item>
+
+    <i-form-item control="passwordConfirm" [form]="form">
+      <label>Password (confirm)</label>
+      <input formControlName="passwordConfirm" type="password">
+    </i-form-item>
+
+    <i-collapsible
+      [expanded]="!!form.errors?.password && form.controls['password'].touched && form.controls['passwordConfirm'].touched">
+      <p class="error">Password != Password (confirm)</p>
+    </i-collapsible>
+
+    <button type="submit" [disabled]="form.invalid" class="success">Save</button>
+  </form>
+
+  <div class="center">
+    <i-in-progress *ngIf="!form" size="36px" margin="48px"></i-in-progress>
   </div>
 </div>
-
-<ng-template #inProgress>
-  <div class="center">
-    <i-in-progress size="36px" margin="48px"></i-in-progress>
-  </div>
-</ng-template>

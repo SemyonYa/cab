@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { titleAnimation } from 'src/animations/title.animation';
-import { User } from 'src/models/user';
 import { UserRestService } from 'src/services/api/user.rest.service';
 import { UiService } from 'src/services/ui.service';
+import { passwordValidator } from '../../validators/password-validator';
 
 @Component({
   selector: 'i-users-add',
@@ -13,14 +13,7 @@ import { UiService } from 'src/services/ui.service';
   animations: [titleAnimation]
 })
 export class UsersAddComponent implements OnInit {
-  form: FormGroup = new FormGroup({
-    'login': new FormControl('qwe', [Validators.required, Validators.pattern(/^[A-Za-z0-9]+$/)]),
-    'firstName': new FormControl('qwe', [Validators.required]),
-    'lastName': new FormControl('qwe', [Validators.required]),
-    'role': new FormControl('user', [Validators.required]),
-    'birth': new FormControl('2020-12-01', [Validators.required, Validators.pattern(/[0-9]{4}-[0-9]{2}-[0-9]{2}/)]),
-    'activated': new FormControl(true),
-  });
+  form: FormGroup;
 
   constructor(
     private userRest: UserRestService,
@@ -28,7 +21,29 @@ export class UsersAddComponent implements OnInit {
     private uiService: UiService
   ) { }
 
+  // private passwordValidator: ValidatorFn = (fg) => {
+  //   if ((fg.get('password').value as string).trim() != (fg.get('passwordConfirm').value as string).trim()) {
+  //     return { password: true };
+  //   }
+  //   return null;
+  // };
+
+
+  private generateForm() {
+    this.form = new FormGroup({
+      'login': new FormControl('qwe', [Validators.required, Validators.pattern(/^[A-Za-z0-9]+$/)]),
+      'firstName': new FormControl('qwe', [Validators.required]),
+      'lastName': new FormControl('qwe', [Validators.required]),
+      'role': new FormControl('user', [Validators.required]),
+      'birth': new FormControl('2020-12-01', [Validators.required, Validators.pattern(/[0-9]{4}-[0-9]{2}-[0-9]{2}/)]),
+      'activated': new FormControl(true),
+      'password': new FormControl('', [Validators.required]),
+      'passwordConfirm': new FormControl('', [Validators.required]),
+    }, passwordValidator);
+  }
+
   ngOnInit(): void {
+    this.generateForm()
   }
 
   submit() {
@@ -42,26 +57,8 @@ export class UsersAddComponent implements OnInit {
             this.uiService.hideSuccess();
             this.router.navigateByUrl('/users');
           }, 500);
-          // console.log(res);
         },
         this.userRest.handleError
       );
   }
-
-  // formValueToSnake(formValue: any) {
-  //   let newValue = {};
-  //   console.log(typeof formValue['activated'] === 'boolean');
-
-  //   for (let key in formValue) {
-  //     newValue[this.toSnake(key)] = (typeof formValue[key] === 'boolean')
-  //       ? 1
-  //       : formValue[key]
-  //   }
-  //   return newValue;
-  // }
-
-  // toSnake(s: string): string {
-  //   return s.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
-  // }
-
 }

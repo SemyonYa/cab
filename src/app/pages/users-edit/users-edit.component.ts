@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { titleAnimation } from 'src/animations/title.animation';
+import { passwordValidator } from 'src/app/validators/password-validator';
 import { User } from 'src/models/user';
 import { UserRestService } from 'src/services/api/user.rest.service';
 import { UiService } from 'src/services/ui.service';
@@ -15,8 +16,8 @@ import { UiService } from 'src/services/ui.service';
 export class UsersEditComponent implements OnInit {
   id: number;
   user: User;
-
   form: FormGroup;
+  
   constructor(
     private userRest: UserRestService,
     private activatedRoute: ActivatedRoute,
@@ -43,7 +44,9 @@ export class UsersEditComponent implements OnInit {
       'role': new FormControl(this.user.role, [Validators.required]),
       'birth': new FormControl(this.user.birth, [Validators.required, Validators.pattern(/[0-9]{4}-[0-9]{2}-[0-9]{2}/)]),
       'activated': new FormControl(this.user.activated),
-    });
+      'password': new FormControl(''),
+      'passwordConfirm': new FormControl(''),
+    }, passwordValidator);
   }
 
   submit() {

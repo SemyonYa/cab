@@ -10,17 +10,17 @@ export class AuthService {
   private TOKEN_VALUE = null;
 
   // TODO: remove fake
-  user$ = new BehaviorSubject<User>(
-    {
-      id: 'id',
-      firstName: 'firstName',
-      lastName: 'lastName',
-      login: 'login',
-      role: 'user',
-      birth: new Date(),
-      activated: true
-    } as User
-  );
+  user$ = new BehaviorSubject<User>(null);
+  //   {
+  //     id: 0,
+  //     firstName: 'firstName',
+  //     lastName: 'lastName',
+  //     login: 'login',
+  //     role: 'user',
+  //     birth: new Date(),
+  //     activated: true
+  //   } as User
+  // );
   constructor() { }
 
   get TOKEN() {

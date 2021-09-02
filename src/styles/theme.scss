@@ -32,6 +32,10 @@ h6 {
   margin: 0;
 }
 
+hr {
+  width: 100%;
+}
+
 .error {
   color: var(--color-danger);
 }
@@ -92,26 +96,19 @@ button img {
 /*
   INPUTS
 */
-ng-valid {
-}
+ng-valid {}
 
-ng-invalid {
-}
+ng-invalid {}
 
-ng-pending {
-}
+ng-pending {}
 
-ng-pristine {
-}
+ng-pristine {}
 
-ng-dirty {
-}
+ng-dirty {}
 
-ng-untouched {
-}
+ng-untouched {}
 
-ng-touched {
-}
+ng-touched {}
 
 input,
 textarea {
@@ -141,8 +138,11 @@ input.search {
 }
 
 input[readonly],
-textarea[readonly] {
+textarea[readonly],
+input[disabled],
+textarea[disabled] {
   border-color: var(--color-secondary);
+  color: var(--color-secondary);
 }
 
 input[type="datetime-local"],

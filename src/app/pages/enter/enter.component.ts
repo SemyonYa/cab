@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/services/auth.service';
 import { AuthRestService } from '../../../services/api/auth.rest.service';
 
 @Component({
@@ -12,14 +13,17 @@ export class EnterComponent implements OnInit {
     login: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
   });
-  constructor(private authRest: AuthRestService) { }
+  constructor(
+    private authRest: AuthRestService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
   }
 
   submit() {
     console.log(this.form.value);
-    this.authRest.post(this.form.value)
+    this.authRest.login(this.form.value)
       .subscribe(
         res => {
           console.log(res);
