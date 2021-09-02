@@ -24,10 +24,14 @@ export class ProfileComponent implements OnInit {
         item => {
           console.log(item);
 
-          // this.user = u;
-          // this.generateForm();
+          this.user = item;
+          this.generateForm();
         },
-        this.userRest.handleError
+        err => {
+          console.log(err);
+
+          this.userRest.handleError(err)
+        }
       );
   }
 
@@ -46,7 +50,15 @@ export class ProfileComponent implements OnInit {
 
   submit() {
     console.log(this.form.value);
+    // TODO
+    this.userRest.putProfile(this.form.value)
+      .subscribe(
+        item => {
+          this.user = item;
+          console.log(item);
 
+        }
+      );
   }
 
 }

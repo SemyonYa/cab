@@ -13,6 +13,7 @@ export const breadcrumbs: { [key: string]: BreadcrumbsItem[] } = {
         new BreadcrumbsItem('Users', '/users'),
         new BreadcrumbsItem('Add', '')
     ],
+    // TODO: regexp edit/[number]
     '/users/edit': [
         new BreadcrumbsItem('Users', '/users'),
         new BreadcrumbsItem('Edit', '')

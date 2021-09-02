@@ -24,7 +24,17 @@ export class AuthService {
   constructor() { }
 
   get TOKEN() {
-    return this.TOKEN_VALUE ?? localStorage.getItem(this.TOKEN_KEY);
+    let token = this.TOKEN_VALUE;
+    if (!token) {
+      token = JSON.parse(localStorage.getItem(this.TOKEN_KEY));
+      if (token) {
+        this.TOKEN_VALUE = token;
+        if (!this.user$.value) {
+          
+        }
+      }
+    }
+    return token;
   }
 
   login(token: string) {
@@ -35,6 +45,5 @@ export class AuthService {
   logout() {
     localStorage.setItem(this.TOKEN_KEY, JSON.stringify(null));
     this.TOKEN_VALUE = null;
-    // this.router.navigateByUrl('/enter');
   }
 }

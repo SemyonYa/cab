@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/services/auth.service';
 import { AuthRestService } from '../../../services/api/auth.rest.service';
 
@@ -15,18 +16,24 @@ export class EnterComponent implements OnInit {
   });
   constructor(
     private authRest: AuthRestService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
+    if (this.authService.TOKEN) {
+      this.router.navigateByUrl('/home');
+    }
   }
 
   submit() {
     console.log(this.form.value);
-    this.authRest.login(this.form.value)
+    this.authRest.post(this.form.value)
       .subscribe(
-        res => {
-          console.log(res);
+        token => {
+          this.authService.login(token);
+          this.router.navigateByUrl('/home')
+          console.log(token);
         },
         this.authRest.handleError
       )

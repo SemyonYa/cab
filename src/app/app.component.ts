@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { MenuItem } from 'src/components/menu-item/menu-item.component';
+import { AuthRestService } from 'src/services/api/auth.rest.service';
+import { AuthService } from 'src/services/auth.service';
 import * as pkg from '../../package.json';
 
 @Component({
@@ -27,7 +29,11 @@ export class AppComponent {
     { id: 5, title: 'Logout', expanded: false, action: this.showModal.bind(this) },
   ];
 
-  constructor(private router: Router) {
+  constructor(
+    private authRest: AuthRestService,
+    private router: Router,
+    private authService: AuthService
+  ) {
     this.router.events
       .subscribe(
         e => {
@@ -51,6 +57,17 @@ export class AppComponent {
   logout() {
     console.log('logout');
     this.modalShown = false;
-    this.router.navigateByUrl('/');
+    this.authRest.delete(0)
+      .subscribe(
+        res => {
+          console.log(res);
+          this.authService.logout();
+          this.router.navigateByUrl('/');
+        },
+        err => {
+          this.authService.logout();
+          this.router.navigateByUrl('/');
+        }
+      );
   }
 }
