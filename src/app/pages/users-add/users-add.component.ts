@@ -47,7 +47,6 @@ export class UsersAddComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.form);
     this.userRest.post(this.form.value)
       .subscribe(
         (res) => {

@@ -22,14 +22,10 @@ export class ProfileComponent implements OnInit {
     this.userRest.getProfile()
       .subscribe(
         item => {
-          console.log(item);
-
           this.user = item;
           this.generateForm();
         },
         err => {
-          console.log(err);
-
           this.userRest.handleError(err)
         }
       );
@@ -49,14 +45,10 @@ export class ProfileComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.form.value);
-    // TODO
     this.userRest.putProfile(this.form.value)
       .subscribe(
         item => {
           this.user = item;
-          console.log(item);
-
         }
       );
   }

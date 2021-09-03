@@ -27,13 +27,11 @@ export class EnterComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.form.value);
     this.authRest.post(this.form.value)
       .subscribe(
         token => {
           this.authService.login(token);
           this.router.navigateByUrl('/home')
-          console.log(token);
         },
         this.authRest.handleError
       )

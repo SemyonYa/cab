@@ -59,7 +59,6 @@ export class UsersEditComponent implements OnInit {
             this.uiService.hideSuccess();
             this.router.navigateByUrl('/users');
           }, 500);
-          // console.log(res);
         },
         this.userRest.handleError
       );

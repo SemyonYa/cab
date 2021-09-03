@@ -20,7 +20,7 @@ export class UsersListComponent implements OnInit {
 
   constructor(
     private userRest: UserRestService,
-    private rotuer: Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -36,19 +36,17 @@ export class UsersListComponent implements OnInit {
   }
 
   editUser(id: number) {
-    this.rotuer.navigateByUrl(`/users/edit/${id}`)
+    this.router.navigateByUrl(`/users/edit/${id}`)
   }
 
   onDelete(id: number) {
     this.editableUser = this.users.find(u => u.id == id);
-    console.log(this.editableUser);
   }
 
   deleteUser() {
     this.userRest.delete(this.editableUser.id)
       .subscribe(
         res => {
-          console.log(res);
           this.userRest.getAll();
           this.editableUser = null;
         },
@@ -62,8 +60,6 @@ export class UsersListComponent implements OnInit {
 
   search(value: string) {
     this.searchValue = value;
-    console.log(this.searchValue);
-
     this.filterUsers();
   }
 
