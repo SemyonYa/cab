@@ -18,6 +18,9 @@ import { ErrorComponent } from './components/error/error.component';
 import { SuccessComponent } from './components/success/success.component';
 import { ArticlesComponent } from './pages/articles/articles.component';
 import { UsersEditComponent } from './pages/users-edit/users-edit.component';
+import { FilialsComponent } from './pages/filials/filials.component';
+import { FilialsEditComponent } from './pages/filials-edit/filials-edit.component';
+import { FilialsListComponent } from './pages/filials-list/filials-list.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,9 @@ import { UsersEditComponent } from './pages/users-edit/users-edit.component';
     UsersListComponent,
     ArticlesComponent,
     UsersEditComponent,
+    FilialsComponent,
+    FilialsEditComponent,
+    FilialsListComponent,
   ],
   imports: [
     AppRoutingModule,

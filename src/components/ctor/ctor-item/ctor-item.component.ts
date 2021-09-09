@@ -44,10 +44,6 @@ export class CtorItemComponent implements OnInit {
     this.form.patchValue({ value: image.id })
   }
 
-  submit() {
-    console.log(this.form.value);
-  }
-
   add() {
     this.onAdd.emit(this.item)
   }

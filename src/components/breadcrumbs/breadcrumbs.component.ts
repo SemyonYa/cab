@@ -14,8 +14,12 @@ export class BreadcrumbsComponent {
       .subscribe(
         e => {
           if (e instanceof NavigationEnd) {
-            this.items = breadcrumbs[e.url];
-            console.log(this.items);
+            for (let key in breadcrumbs) {
+              console.log(e.url.match(key));
+              // TODO: 
+              // if ()
+              // this.items = breadcrumbs[e.url];
+            }
           }
         }
       );

@@ -1,9 +1,6 @@
-<form (ngSubmit)="submit()" [formGroup]="form" class="col">
+<form [formGroup]="form" class="col">
     <div class="row">
         <p>[Constructor item #{{index}}]</p>
-        <!-- <button type="button" class="icon add" (click)="add()">
-            <img src="/assets/icons/plus-success.svg" alt="ADD">
-        </button> -->
         <button type="button" class="icon remove" (click)="remove()">
             <img src="/assets/icons/trash.svg" alt="REMOVE">
         </button>

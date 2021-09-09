@@ -14,7 +14,7 @@ export const breadcrumbs: { [key: string]: BreadcrumbsItem[] } = {
         new BreadcrumbsItem('Add', '')
     ],
     // TODO: regexp edit/[number]
-    '/users/edit': [
+    '/users/edit.\d+': [
         new BreadcrumbsItem('Users', '/users'),
         new BreadcrumbsItem('Edit', '')
     ],

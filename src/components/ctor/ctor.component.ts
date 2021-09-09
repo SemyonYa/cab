@@ -40,8 +40,6 @@ export class CtorComponent implements OnInit {
           for (let key in values) {
             this.ctor[key] = values[key];
           }
-          // console.log(values);
-          // console.log(this.ctor);
         });
     this.form.updateValueAndValidity();
   }
@@ -68,8 +66,6 @@ export class CtorComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.ctor);
-    console.log(Object.assign({}, this.ctor));
     this.ctorRest.post(this.ctor)
       .subscribe(
         res => {

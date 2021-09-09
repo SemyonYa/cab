@@ -49,15 +49,9 @@ export abstract class RestService<T extends { id: number }> {
       )
       .subscribe(
         items => {
-          // TODO: DELETE TIMEOUT
-          // setTimeout(() => {
           this.list$.next(items);
-          // }, 1000);
         },
         this.handleError,
-        // () => {
-        //   console.log('COMPLETE');
-        // }
       )
   }
 

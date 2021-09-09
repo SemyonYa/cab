@@ -5,6 +5,10 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
+textarea {
+  font-family: "Montserrat", sans-serif;
+}
+
 aside {
   box-shadow: 6px 0 12px 0 rgba(0, 0, 0, 0.04);
 }
@@ -32,10 +36,11 @@ h6 {
   margin: 0;
 }
 
+/*
 hr {
   width: 100%;
 }
-
+*/
 .error {
   color: var(--color-danger);
 }

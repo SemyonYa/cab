@@ -18,8 +18,6 @@ export class ApiInterceptor implements HttpInterceptor {
   // }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log(this.authService.TOKEN);
-
     const requestWithToken = request.clone({
       setHeaders: { 'Authorization': `Bearer ${this.authService.TOKEN}` }
     });
@@ -30,7 +28,7 @@ export class ApiInterceptor implements HttpInterceptor {
           (error: any) => {
             if (error instanceof HttpErrorResponse) {
               if (error.status === 401) {
-                console.log('first 401');
+                console.log('interceptor 401');
                 this.authService.logout();
                 this.router.navigateByUrl('/');
               }
