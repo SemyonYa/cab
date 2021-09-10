@@ -8,7 +8,7 @@
     </div>
     <div class="table-body">
       <i-grid-row *ngFor="let item of items" [item]="item" [withEdit]="withEdit" [withDelete]="withDelete"
-        (onEdit)="editItem($event)" (onDelete)="deleteItem($event)"></i-grid-row>
+        [exclude]="exclude" (onEdit)="editItem($event)" (onDelete)="deleteItem($event)"></i-grid-row>
     </div>
   </div>
 </div>
