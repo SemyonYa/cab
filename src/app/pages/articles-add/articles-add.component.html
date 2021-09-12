@@ -1,4 +1,4 @@
 <div class="wrap col" @titleAnimation>
     <h3>Create article</h3>
-    <i-ctor></i-ctor>
+    <i-ctor [ctor]="ctor" [ctorRest]="ctorRest" (onUpdateCtor)="updateCtor($event)"></i-ctor>
 </div>

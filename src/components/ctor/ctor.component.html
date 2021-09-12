@@ -28,8 +28,12 @@
         <i-file-input (onSelect)="selectThumb($event)"></i-file-input>
       </i-form-item>
     </div>
+    <button *ngIf="!ctor?.id" type="submit" [disabled]="!valid" class="success">
+      Save
+      <img src="/assets/icons/done.svg" alt="SAVE">
+    </button>
 
-    <fieldset class="children">
+    <fieldset *ngIf="ctor?.id" class="children">
       <legend>Ctor items</legend>
       <i-collapsible [expanded]="!!ctor.items">
         <ng-container *ngFor="let item of ctor.items, let index = index; let last = last">
@@ -52,9 +56,8 @@
       </div>
     </fieldset>
 
-    <!-- <button type="submit" [disabled]="form.invalid && !ctorItemFormsValid" class="success"> -->
-    <button type="submit" [disabled]="!valid" class="success"> 
-      Save 
+    <button *ngIf="ctor?.id" type="submit" [disabled]="!valid" class="success">
+      Save
       <img src="/assets/icons/done.svg" alt="SAVE">
     </button>
   </form>

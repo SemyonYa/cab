@@ -12,7 +12,8 @@ export class Ctor {
     items: CtorItem[];
 
     constructor() {
-        this.items = [new CtorItem()];
+        this.items = [];
+        // this.items = [new CtorItem()];
     }
 }
 
@@ -23,7 +24,7 @@ export class CtorItem {
     value: string;
     ctorId: number;
 
-    constructor(ctorId: number = null) {
+    constructor(ctorId: number) {
         this.type = CtorItemType.Text;
 
         if (ctorId) {

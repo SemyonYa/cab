@@ -15,7 +15,7 @@ export class BreadcrumbsComponent {
         e => {
           if (e instanceof NavigationEnd) {
             for (let key in breadcrumbs) {
-              console.log(e.url.match(key));
+              // console.log(e.url.match(key));
               // TODO: 
               // if ()
               // this.items = breadcrumbs[e.url];

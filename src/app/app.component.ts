@@ -20,7 +20,11 @@ export class AppComponent {
 
   menu: MenuItem[] = [
     { id: 1, title: 'Home', route: 'home', expanded: false },
-    { id: 2, title: 'Articles', route: 'articles', expanded: false },
+    {
+      id: 2, title: 'Articles', route: 'articles', expanded: false, children: [
+        { id: 21, title: 'Add', route: 'articles/add', expanded: false, children: [] },
+      ]
+    },
     { id: 3, title: 'Filials', route: 'filials', expanded: false },
     {
       id: 4, title: 'Users', route: 'users', expanded: false, children: [
