@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ArticlesAddComponent } from './pages/articles-add/articles-add.component';
+import { ArticlesEditComponent } from './pages/articles-edit/articles-edit.component';
+import { ArticlesListComponent } from './pages/articles-list/articles-list.component';
 import { ArticlesComponent } from './pages/articles/articles.component';
 import { EnterComponent } from './pages/enter/enter.component';
 import { FilialsEditComponent } from './pages/filials-edit/filials-edit.component';
@@ -31,6 +34,13 @@ const routes: Routes = [
       { path: 'locked', component: UsersLockedComponent }
     ]
   },
+  {
+    path: 'articles', component: ArticlesComponent, children: [
+      { path: '', component: ArticlesListComponent, pathMatch: 'full' },
+      { path: 'add', component: ArticlesAddComponent },
+      { path: 'edit/:id', component: ArticlesEditComponent },
+    ]
+  },
   { path: 'profile', component: ProfileComponent },
 ];
 
@@ -38,4 +48,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { } 

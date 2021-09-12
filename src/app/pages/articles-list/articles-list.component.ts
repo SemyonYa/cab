@@ -1,0 +1,80 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { titleAnimation } from 'src/animations/title.animation';
+import { Ctor } from 'src/models/Ctor';
+import { CtorRestService } from 'src/services/api/ctor.rest.service';
+
+@Component({
+  selector: 'i-articles-list',
+  templateUrl: './articles-list.component.html',
+  styleUrls: ['./articles-list.component.scss'],
+  animations: [titleAnimation]
+})
+export class ArticlesListComponent implements OnInit {
+  private ctors: Ctor[];
+  titles: string[];
+
+  searchValue: string = '';
+  filteredCtors: Ctor[];
+  ctorForDelete: Ctor;
+
+  constructor(
+    private ctorRest: CtorRestService,
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
+    this.ctorRest.getAll();
+    this.ctorRest.list$
+      .subscribe(
+        cs => {
+          this.ctors = cs;
+          console.log("🚀 ~ file: articles-list.component.ts ~ line 32 ~ ArticlesListComponent ~ ngOnInit ~ cs", cs)
+          this.filterCtors();
+        }
+      );
+    this.titles = ['ID', 'first name',];
+  }
+
+  editCtor(id: number) {
+    this.router.navigateByUrl(`/articles/edit/${id}`)
+  }
+
+  onDelete(id: number) {
+    this.ctorForDelete = this.ctors.find(c => c.id == id);
+  }
+
+  deleteCtor() {
+    this.ctorRest.delete(this.ctorForDelete.id)
+      .subscribe(
+        res => {
+          this.ctorRest.getAll();
+          this.ctorForDelete = null;
+        },
+        this.ctorRest.handleError
+      );
+  }
+
+  closeUser() {
+    this.ctorForDelete = null;
+  }
+
+  search(value: string) {
+    this.searchValue = value;
+    this.filterCtors();
+  }
+
+  filterCtors() {
+    this.filteredCtors = this.ctors
+      ? this.ctors
+        .filter(
+          u => {
+            const searchFields: string = [u.title, u.subtitle].join(' ').toLocaleLowerCase();
+            return this.searchValue
+              ? searchFields.indexOf(this.searchValue.toLocaleLowerCase()) !== -1
+              : true
+          }
+        )
+      : null;
+  }
+}
