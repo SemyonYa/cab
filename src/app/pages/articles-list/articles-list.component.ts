@@ -13,7 +13,7 @@ import { CtorRestService } from 'src/services/api/ctor.rest.service';
 export class ArticlesListComponent implements OnInit {
   private ctors: Ctor[];
   titles: string[];
-
+  exclude: string[];
   searchValue: string = '';
   filteredCtors: Ctor[];
   ctorForDelete: Ctor;
@@ -29,11 +29,11 @@ export class ArticlesListComponent implements OnInit {
       .subscribe(
         cs => {
           this.ctors = cs;
-          console.log("🚀 ~ file: articles-list.component.ts ~ line 32 ~ ArticlesListComponent ~ ngOnInit ~ cs", cs)
           this.filterCtors();
         }
       );
-    this.titles = ['ID', 'first name',];
+    this.titles = ['ID', 'Title', 'created at', 'Author'];
+    this.exclude = ['subtitle', 'authorId', 'thumbId', 'tag'];
   }
 
   editCtor(id: number) {

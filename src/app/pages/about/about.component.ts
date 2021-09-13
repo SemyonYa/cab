@@ -5,21 +5,23 @@ import { CtorRestService } from 'src/services/api/ctor.rest.service';
 import { UiService } from 'src/services/ui.service';
 
 @Component({
-  selector: 'i-articles-add',
-  templateUrl: './articles-add.component.html',
-  styleUrls: ['./articles-add.component.scss'],
+  selector: 'i-about',
+  templateUrl: './about.component.html',
+  styleUrls: ['./about.component.scss'],
   animations: [titleAnimation]
 })
-export class ArticlesAddComponent implements OnInit {
+export class AboutComponent implements OnInit {
+
   constructor(
     public ctorRest: CtorRestService,
-    private uiService: UiService
+    private uiService: UiService,
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
   onSuccess(ctor: Ctor) {
-    this.uiService.showSuccess(`Added new article ${ctor.title}`);
+    this.uiService.showSuccess(`About page was updated successfully`);
     setTimeout(() => {
       this.uiService.hideSuccess();
     }, 1000);
