@@ -18,15 +18,14 @@ import { ErrorComponent } from './components/error/error.component';
 import { SuccessComponent } from './components/success/success.component';
 import { ArticlesComponent } from './pages/articles/articles.component';
 import { UsersEditComponent } from './pages/users-edit/users-edit.component';
-// <<<<<<< Updated upstream
+
 import { FilialsComponent } from './pages/filials/filials.component';
 import { FilialsEditComponent } from './pages/filials-edit/filials-edit.component';
 import { FilialsListComponent } from './pages/filials-list/filials-list.component';
-// =======
 import { ArticlesListComponent } from './pages/articles-list/articles-list.component';
 import { ArticlesAddComponent } from './pages/articles-add/articles-add.component';
 import { ArticlesEditComponent } from './pages/articles-edit/articles-edit.component';
-// >>>>>>> Stashed changes
+import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
   declarations: [
@@ -43,15 +42,13 @@ import { ArticlesEditComponent } from './pages/articles-edit/articles-edit.compo
     UsersListComponent,
     ArticlesComponent,
     UsersEditComponent,
-// <<<<<<< Updated upstream
     FilialsComponent,
     FilialsEditComponent,
     FilialsListComponent,
-// =======
     ArticlesListComponent,
     ArticlesAddComponent,
     ArticlesEditComponent,
-// >>>>>>> Stashed changes
+    AboutComponent,
   ],
   imports: [
     AppRoutingModule,

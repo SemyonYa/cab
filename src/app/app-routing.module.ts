@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AboutComponent } from './pages/about/about.component';
 import { ArticlesAddComponent } from './pages/articles-add/articles-add.component';
 import { ArticlesEditComponent } from './pages/articles-edit/articles-edit.component';
 import { ArticlesListComponent } from './pages/articles-list/articles-list.component';
@@ -19,6 +20,7 @@ import { UsersComponent } from './pages/users/users.component';
 const routes: Routes = [
   { path: '', component: EnterComponent, pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
   { path: 'articles', component: ArticlesComponent },
   {
     path: 'filials', component: FilialsComponent, children: [
@@ -36,16 +38,17 @@ const routes: Routes = [
   },
   {
     path: 'articles', component: ArticlesComponent, children: [
-      { path: '', component: ArticlesListComponent, pathMatch: 'full' },
+      { path: 'list', component: ArticlesListComponent },
       { path: 'add', component: ArticlesAddComponent },
       { path: 'edit/:id', component: ArticlesEditComponent },
     ]
   },
   { path: 'profile', component: ProfileComponent },
-]; 
+  { path: '**', redirectTo: '/'}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { } 
+export class AppRoutingModule { }

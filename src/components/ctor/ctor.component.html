@@ -1,4 +1,4 @@
-<div class="wrap col">
+<div *ngIf="form" class="wrap col">
   <h1>[Constructor]</h1>
   <form [formGroup]="form" (ngSubmit)="submit()" class="col">
     <div class="parent">
@@ -51,9 +51,10 @@
         </button>
       </div>
 
-      <div *ngIf="!ctor.items" class="center">
+      <ng-container *ngIf="!ctor.items" [ngTemplateOutlet]="inProgress"></ng-container>
+      <!-- <div *ngIf="!ctor.items" class="center">
         <i-in-progress size="36px" margin="48px"></i-in-progress>
-      </div>
+      </div> -->
     </fieldset>
 
     <button *ngIf="ctor?.id" type="submit" [disabled]="!valid" class="success">
@@ -62,3 +63,12 @@
     </button>
   </form>
 </div>
+
+<ng-container *ngIf="!form" [ngTemplateOutlet]="inProgress"></ng-container>
+
+
+<ng-template #inProgress>
+  <div class="center">
+    <i-in-progress size="36px" margin="48px"></i-in-progress>
+  </div>
+</ng-template>

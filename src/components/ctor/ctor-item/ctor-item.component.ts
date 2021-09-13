@@ -14,11 +14,8 @@ export class CtorItemComponent implements OnInit {
   @Output() onAdd = new EventEmitter<CtorItem>();
   @Output() onRemove = new EventEmitter<number>();
 
-  form: FormGroup = new FormGroup({
-    type: new FormControl(CtorItemType.Text, [Validators.required]),
-    value: new FormControl('', [Validators.required]),
-  });
   types: string[] = [];
+  form: FormGroup;
 
   get selectedType(): string {
     return this.form.get('type').value;
@@ -30,6 +27,9 @@ export class CtorItemComponent implements OnInit {
     for (const key in CtorItemType) {
       this.types.push(CtorItemType[key]);
     }
+
+    this.generateForm();
+
     this.form.valueChanges
       .subscribe(
         values => {
@@ -38,6 +38,13 @@ export class CtorItemComponent implements OnInit {
           }
         }
       );
+  }
+
+  private generateForm() {
+    this.form = new FormGroup({
+      type: new FormControl(this.item?.type ?? CtorItemType.Text, [Validators.required]),
+      value: new FormControl(this.item?.value ?? '', [Validators.required]),
+    });
   }
 
   selectThumb(image: Image) {

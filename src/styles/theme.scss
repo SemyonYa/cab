@@ -5,7 +5,8 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
-textarea {
+textarea,
+input {
   font-family: "Montserrat", sans-serif;
 }
 
@@ -101,19 +102,15 @@ button img {
 /*
   INPUTS
 */
-ng-valid {}
-
-ng-invalid {}
-
-ng-pending {}
-
-ng-pristine {}
-
-ng-dirty {}
-
-ng-untouched {}
-
-ng-touched {}
+/*
+  input.ng-valid {}
+  input.ng-invalid {}
+  input.ng-pending {}
+  input.ng-pristine {}
+  input.ng-dirty {}
+  input.ng-untouched {}
+  input.ng-touched {}
+*/
 
 input,
 textarea {
