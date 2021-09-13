@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http/http'
-import { BehaviorSubject, Observable } from 'rxjs'
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable, throwError } from 'rxjs'
+import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment'
 import { UiService } from '../ui.service';
 
@@ -43,71 +43,63 @@ export abstract class RestService<T extends { id: number }> {
       .pipe(
         map(
           (items: any[]) => {
-            return items.map(item => this.responseToCamelCase(item) as T)
+            return items.map(this.tConstructor);
           }
         )
+        // catchError(err => {
+        //   console.log(err);
+        //   return throwError(err);
+        // })
       )
       .subscribe(
         items => {
           this.list$.next(items);
         },
         this.handleError,
+        // err => {
+        //   console.log(err);
+        // }
       )
   }
 
   get(id: number): Observable<T> {
     return this.http.get<T>(`${this.url}/${id}`)
       .pipe(
-        map(
-          (item: any) => {
-            return this.responseToCamelCase(item) as T;
-          }
-        )
+        map(this.tConstructor)
       );
   }
 
   post(item: T): Observable<T> {
     return this.http.post<T>(this.url, this.formValueToSnake(item))
       .pipe(
-        map(
-          item => {
-            return this.responseToCamelCase(item) as T;
-          }
-        )
+        map(this.tConstructor)
       );
   }
 
   put(item: T, id: number): Observable<T> {
     return this.http.put<T>(`${this.url}/${id}`, this.formValueToSnake(item))
       .pipe(
-        map(
-          item => {
-            return this.responseToCamelCase(item) as T;
-          }
-        )
+        map(this.tConstructor)
       );
   }
 
   patch(partialItem: Partial<T>, id: string): Observable<T> {
     return this.http.patch<T>(`${this.url}/${id}`, this.formValueToSnake(partialItem))
       .pipe(
-        map(
-          item => {
-            return this.responseToCamelCase(item) as T;
-          }
-        )
+        map(this.tConstructor)
       );
   }
 
   delete(id: number): Observable<T> {
     return this.http.delete<T>(`${this.url}/${id}`)
       .pipe(
-        map(
-          item => {
-            return this.responseToCamelCase(item) as T;
-          }
-        )
+        map(this.tConstructor)
       );
+  }
+
+
+  protected tConstructor(item: any): T {
+    return this.responseToCamelCase(item) as T;
   }
 
   protected formValueToSnake(formValue: any) {
@@ -119,10 +111,6 @@ export abstract class RestService<T extends { id: number }> {
     }
     return newValue;
   }
-
-  // private toSnake(s: string): string {
-  //   return s.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
-  // }
 
   protected responseToCamelCase(response: any) {
     var newObj = {};

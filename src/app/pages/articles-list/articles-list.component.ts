@@ -11,6 +11,7 @@ import { CtorRestService } from 'src/services/api/ctor.rest.service';
   animations: [titleAnimation]
 })
 export class ArticlesListComponent implements OnInit {
+  // private TAG: string = 'article';
   private ctors: Ctor[];
   titles: string[];
   exclude: string[];
@@ -24,8 +25,7 @@ export class ArticlesListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.ctorRest.getAll();
-    this.ctorRest.list$
+    this.ctorRest.getByTag('article')
       .subscribe(
         cs => {
           this.ctors = cs;

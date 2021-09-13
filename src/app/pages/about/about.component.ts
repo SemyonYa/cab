@@ -11,13 +11,20 @@ import { UiService } from 'src/services/ui.service';
   animations: [titleAnimation]
 })
 export class AboutComponent implements OnInit {
-
+  tag: string = 'about';
+  ctorId: number;
   constructor(
     public ctorRest: CtorRestService,
     private uiService: UiService,
   ) { }
 
   ngOnInit(): void {
+    this.ctorRest.getByTag(this.tag)
+      .subscribe(
+        (items: Ctor[]) => {
+          this.ctorId = items && items.length > 0 ? items[0].id : null;
+        }
+      )
   }
 
   onSuccess(ctor: Ctor) {

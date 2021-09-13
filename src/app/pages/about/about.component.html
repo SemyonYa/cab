@@ -1,7 +1,7 @@
 <i-header title="About" subtitle="About page editor"></i-header>
 
-<div class="page col" @titleAnimation>
+<div *ngIf="ctorId !== undefined" class="page col" @titleAnimation>
 
-  <i-ctor [ctorId]="2" [ctorRest]="ctorRest" (onSuccess)="onSuccess($event)"></i-ctor>
+  <i-ctor [ctorId]="ctorId" [ctorRest]="ctorRest" [tag]="tag" (onSuccess)="onSuccess($event)"></i-ctor>
 
 </div>

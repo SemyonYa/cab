@@ -13,7 +13,7 @@ import { CtorRestService } from '../../services/api/ctor.rest.service';
 export class CtorComponent implements OnInit {
   @Input() ctorId: number = null;
   @Input() ctorRest: CtorRestService;
-  // TODO:  @Input() tag: string && readonly
+  @Input() tag: string;
   @Output() onSuccess = new EventEmitter<Ctor>();
   ctor: Ctor;
   form: FormGroup;
@@ -54,7 +54,6 @@ export class CtorComponent implements OnInit {
         });
   }
 
-
   private generateForm() {
     this.form = new FormGroup({
       title: new FormControl(this.ctor?.title ?? '', [Validators.required]),
@@ -62,7 +61,7 @@ export class CtorComponent implements OnInit {
       createdAt: new FormControl(this.ctor?.createdAt?.toString()?.replace(' ', 'T') ?? formatDate(new Date(), 'y-MM-ddTHH:mm', 'en-EN')),
       authorName: new FormControl(this.ctor?.authorName ?? ''),
       thumbId: new FormControl(this.ctor?.thumbId ?? ''),
-      tag: new FormControl(this.ctor?.tag ?? ''),
+      tag: new FormControl(this.ctor?.tag ?? this.tag ?? ''),
     });
   }
 
@@ -92,8 +91,6 @@ export class CtorComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.ctor);
-
     if (!this.ctor?.id) {
       this.ctorRest.post(this.ctor)
         .subscribe(
