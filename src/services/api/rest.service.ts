@@ -13,6 +13,33 @@ export abstract class RestService<T extends { id: number }> {
 
   protected get url(): string { return `${environment.baseUrl}${this.route}`; }
 
+
+  protected tConstructor = (item: any): T => {
+    return this.responseToCamelCase(item) as T;
+  }
+
+  protected formValueToSnake = (formValue: any) => {
+    let newValue = {};
+    for (let key in formValue) {
+      newValue[key.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)] = (typeof formValue[key] === 'boolean')
+        ? 1
+        : formValue[key]
+    }
+    return newValue;
+  }
+
+  protected responseToCamelCase = (response: any) => {
+    var newObj = {};
+    for (let d in response) {
+      if (response.hasOwnProperty(d)) {
+        newObj[d.replace(/(\_\w)/g, function (k) {
+          return k[1].toUpperCase();
+        })] = response[d];
+      }
+    }
+    return newObj;
+  }
+
   handleError = (err: HttpErrorResponse) => {
     if (this.errorTimeout) clearTimeout(this.errorTimeout);
 
@@ -42,8 +69,8 @@ export abstract class RestService<T extends { id: number }> {
     this.http.get<T[]>(this.url)
       .pipe(
         map(
-          (items: any[]) => {
-            return items.map(this.tConstructor);
+          (items: any[]): T[] => {
+            return items.map(this.tConstructor) as T[];
           }
         )
         // catchError(err => {
@@ -95,32 +122,5 @@ export abstract class RestService<T extends { id: number }> {
       .pipe(
         map(this.tConstructor)
       );
-  }
-
-
-  protected tConstructor(item: any): T {
-    return this.responseToCamelCase(item) as T;
-  }
-
-  protected formValueToSnake(formValue: any) {
-    let newValue = {};
-    for (let key in formValue) {
-      newValue[key.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)] = (typeof formValue[key] === 'boolean')
-        ? 1
-        : formValue[key]
-    }
-    return newValue;
-  }
-
-  protected responseToCamelCase(response: any) {
-    var newObj = {};
-    for (let d in response) {
-      if (response.hasOwnProperty(d)) {
-        newObj[d.replace(/(\_\w)/g, function (k) {
-          return k[1].toUpperCase();
-        })] = response[d];
-      }
-    }
-    return newObj;
   }
 }

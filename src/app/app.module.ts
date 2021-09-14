@@ -26,6 +26,14 @@ import { ArticlesListComponent } from './pages/articles-list/articles-list.compo
 import { ArticlesAddComponent } from './pages/articles-add/articles-add.component';
 import { ArticlesEditComponent } from './pages/articles-edit/articles-edit.component';
 import { AboutComponent } from './pages/about/about.component';
+import { PersonalComponent } from './pages/personal/personal.component';
+import { PersonalListComponent } from './pages/personal-list/personal-list.component';
+import { PersonalAddComponent } from './pages/personal-add/personal-add.component';
+import { PersonalEditComponent } from './pages/personal-edit/personal-edit.component';
+import { PositionsComponent } from './pages/positions/positions.component';
+import { PositionsListComponent } from './pages/positions-list/positions-list.component';
+import { PositionsAddComponent } from './pages/positions-add/positions-add.component';
+import { PositionsEditComponent } from './pages/positions-edit/positions-edit.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +57,14 @@ import { AboutComponent } from './pages/about/about.component';
     ArticlesAddComponent,
     ArticlesEditComponent,
     AboutComponent,
+    PersonalComponent,
+    PersonalListComponent,
+    PersonalAddComponent,
+    PersonalEditComponent,
+    PositionsComponent,
+    PositionsListComponent,
+    PositionsAddComponent,
+    PositionsEditComponent,
   ],
   imports: [
     AppRoutingModule,

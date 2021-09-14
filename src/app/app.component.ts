@@ -26,6 +26,16 @@ export class AppComponent {
         { id: 21, title: 'Add', route: 'articles/add', expanded: false, children: [] },
       ]
     },
+    {
+      id: 8, title: 'Personal', route: 'personal/list', expanded: false, children: [
+        { id: 81, title: 'Add', route: 'personal/add', expanded: false, children: [] },
+      ]
+    },
+    {
+      id: 8, title: 'Positions', route: 'positions/list', expanded: false, children: [
+        { id: 81, title: 'Add', route: 'positions/add', expanded: false, children: [] },
+      ]
+    },
     { id: 3, title: 'Filials', route: 'filials', expanded: false },
     {
       id: 4, title: 'Users', route: 'users', expanded: false, children: [

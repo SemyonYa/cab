@@ -16,9 +16,9 @@ export class CtorRestService extends RestService<Ctor> {
     super(http, ui);
   }
 
-  tConstructor(item: any): Ctor {
-    let ctor = super.responseToCamelCase(item) as Ctor;
-    ctor.items = (item['ctorItems'] as any[]).map(i => super.responseToCamelCase(i) as CtorItem);
+  tConstructor = (item: any): Ctor => {
+    let ctor = this.responseToCamelCase(item) as Ctor;
+    ctor.items = (item['ctorItems'] as any[]).map(i => this.responseToCamelCase(i) as CtorItem);
     return ctor;
   }
 

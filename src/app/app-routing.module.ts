@@ -10,6 +10,14 @@ import { FilialsEditComponent } from './pages/filials-edit/filials-edit.componen
 import { FilialsListComponent } from './pages/filials-list/filials-list.component';
 import { FilialsComponent } from './pages/filials/filials.component';
 import { HomeComponent } from './pages/home/home.component';
+import { PersonalAddComponent } from './pages/personal-add/personal-add.component';
+import { PersonalEditComponent } from './pages/personal-edit/personal-edit.component';
+import { PersonalListComponent } from './pages/personal-list/personal-list.component';
+import { PersonalComponent } from './pages/personal/personal.component';
+import { PositionsAddComponent } from './pages/positions-add/positions-add.component';
+import { PositionsEditComponent } from './pages/positions-edit/positions-edit.component';
+import { PositionsListComponent } from './pages/positions-list/positions-list.component';
+import { PositionsComponent } from './pages/positions/positions.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { UsersAddComponent } from './pages/users-add/users-add.component';
 import { UsersEditComponent } from './pages/users-edit/users-edit.component';
@@ -43,8 +51,22 @@ const routes: Routes = [
       { path: 'edit/:id', component: ArticlesEditComponent },
     ]
   },
+  {
+    path: 'personal', component: PersonalComponent, children: [
+      { path: 'list', component: PersonalListComponent },
+      { path: 'add', component: PersonalAddComponent },
+      { path: 'edit/:id', component: PersonalEditComponent },
+    ]
+  },
+  {
+    path: 'positions', component: PositionsComponent, children: [
+      { path: 'list', component: PositionsListComponent },
+      { path: 'add', component: PositionsAddComponent },
+      { path: 'edit/:id', component: PositionsEditComponent },
+    ]
+  },
   { path: 'profile', component: ProfileComponent },
-  { path: '**', redirectTo: '/'}
+  { path: '**', redirectTo: '/' }
 ];
 
 @NgModule({

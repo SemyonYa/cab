@@ -14,6 +14,7 @@ export class CtorComponent implements OnInit {
   @Input() ctorId: number = null;
   @Input() ctorRest: CtorRestService;
   @Input() tag: string;
+  @Input() withItems: boolean = true;
   @Output() onSuccess = new EventEmitter<Ctor>();
   ctor: Ctor;
   form: FormGroup;
