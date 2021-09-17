@@ -11,6 +11,8 @@ import { UiService } from 'src/services/ui.service';
   animations: [titleAnimation]
 })
 export class ArticlesAddComponent implements OnInit {
+  tag = 'article';
+
   constructor(
     public ctorRest: CtorRestService,
     private uiService: UiService

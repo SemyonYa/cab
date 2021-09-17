@@ -8,6 +8,7 @@ body {
 textarea,
 input {
   font-family: "Montserrat", sans-serif;
+  outline: none;
 }
 
 aside {
@@ -118,7 +119,8 @@ textarea {
   padding: 6px 12px;
   border: solid 1px var(--color-secondary);
   font-size: 14px;
-  outline: solid 1px rgba(0, 0, 0, 0.02);
+  /* outline: solid 1px rgba(0, 0, 0, 0.02);*/
+  outline: none;
   background-color: white;
 }
 
