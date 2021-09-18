@@ -34,6 +34,10 @@ import { PositionsComponent } from './pages/positions/positions.component';
 import { PositionsListComponent } from './pages/positions-list/positions-list.component';
 import { PositionsAddComponent } from './pages/positions-add/positions-add.component';
 import { PositionsEditComponent } from './pages/positions-edit/positions-edit.component';
+import { ServicesComponent } from './pages/services/services.component';
+import { ServicesListComponent } from './pages/services-list/services-list.component';
+import { ServicesAddComponent } from './pages/services-add/services-add.component';
+import { ServicesEditComponent } from './pages/services-edit/services-edit.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +69,10 @@ import { PositionsEditComponent } from './pages/positions-edit/positions-edit.co
     PositionsListComponent,
     PositionsAddComponent,
     PositionsEditComponent,
+    ServicesComponent,
+    ServicesListComponent,
+    ServicesAddComponent,
+    ServicesEditComponent,
   ],
   imports: [
     AppRoutingModule,

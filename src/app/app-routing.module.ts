@@ -19,6 +19,10 @@ import { PositionsEditComponent } from './pages/positions-edit/positions-edit.co
 import { PositionsListComponent } from './pages/positions-list/positions-list.component';
 import { PositionsComponent } from './pages/positions/positions.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { ServicesAddComponent } from './pages/services-add/services-add.component';
+import { ServicesEditComponent } from './pages/services-edit/services-edit.component';
+import { ServicesListComponent } from './pages/services-list/services-list.component';
+import { ServicesComponent } from './pages/services/services.component';
 import { UsersAddComponent } from './pages/users-add/users-add.component';
 import { UsersEditComponent } from './pages/users-edit/users-edit.component';
 import { UsersListComponent } from './pages/users-list/users-list.component';
@@ -42,6 +46,13 @@ const routes: Routes = [
       { path: 'add', component: UsersAddComponent },
       { path: 'edit/:id', component: UsersEditComponent },
       { path: 'locked', component: UsersLockedComponent }
+    ]
+  },
+  {
+    path: 'services', component: ServicesComponent, children: [
+      { path: 'list', component: ServicesListComponent },
+      { path: 'add', component: ServicesAddComponent },
+      { path: 'edit/:id', component: ServicesEditComponent },
     ]
   },
   {

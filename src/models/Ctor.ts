@@ -4,14 +4,18 @@ export class Ctor {
     id: number;
     title: string;
     subtitle: string;
+    description: string;
+    price: number;
     createdAt: Date;
     authorName: string;
     authorId: string;
     thumbId: number;
     tag: string;
     items: CtorItem[];
+    isActive: boolean;
 
     constructor() {
+        this.isActive = true;
         this.items = [];
         // this.items = [new CtorItem()];
     }

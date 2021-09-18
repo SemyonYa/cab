@@ -14,6 +14,8 @@ export class CtorComponent implements OnInit {
   @Input() ctorId: number = null;
   @Input() ctorRest: CtorRestService;
   @Input() tag: string;
+  // TODO: 
+  @Input() fields: string[];
   @Input() withItems: boolean = true;
   @Output() onSuccess = new EventEmitter<Ctor>();
   ctor: Ctor;
@@ -59,15 +61,22 @@ export class CtorComponent implements OnInit {
     this.form = new FormGroup({
       title: new FormControl(this.ctor?.title ?? '', [Validators.required]),
       subtitle: new FormControl(this.ctor?.subtitle ?? ''),
+      description: new FormControl(this.ctor?.description ?? ''),
+      price: new FormControl(this.ctor?.price ?? 0),
       createdAt: new FormControl(this.ctor?.createdAt?.toString()?.replace(' ', 'T') ?? formatDate(new Date(), 'y-MM-ddTHH:mm', 'en-EN')),
       authorName: new FormControl(this.ctor?.authorName ?? ''),
       thumbId: new FormControl(this.ctor?.thumbId ?? ''),
       tag: new FormControl(this.ctor?.tag ?? this.tag ?? ''),
+      isActive: new FormControl(this.ctor.isActive),
     });
   }
 
   selectThumb(image: Image) {
     this.form.patchValue({ thumbId: image.id });
+  }
+
+  toggleActivity(value: boolean) {
+    this.form.patchValue({})
   }
 
   addItem(afterItem: CtorItem = null) {
@@ -92,6 +101,7 @@ export class CtorComponent implements OnInit {
   }
 
   submit() {
+    console.log("🚀 ~ file: ctor.component.ts ~ line 105 ~ CtorComponent ~ submit ~ this.ctor", this.ctor)
     if (!this.ctor?.id) {
       this.ctorRest.post(this.ctor)
         .subscribe(

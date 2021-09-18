@@ -10,6 +10,14 @@
         <label>Subtitle</label>
         <input type="text" formControlName="subtitle">
       </i-form-item>
+      <i-form-item [form]="form" control="description">
+        <label>Description</label>
+        <textarea type="text" rows="6" formControlName="description"></textarea>
+      </i-form-item>
+      <i-form-item [form]="form" control="price">
+        <label>Price</label>
+        <input type="number" formControlName="price">
+      </i-form-item>
       <i-form-item [form]="form" control="createdAt">
         <label>Created At</label>
         <input type="datetime-local" formControlName="createdAt">
@@ -26,6 +34,11 @@
         <label>Thumb</label>
         <input type="text" formControlName="thumbId" class="none" readonly>
         <i-file-input (onSelect)="selectThumb($event)"></i-file-input>
+      </i-form-item>
+      <i-form-item [form]="form" control="isActive">
+        <label>Activated</label>
+        <input type="checkbox" formControlName="isActive" class="none" readonly>
+        <i-toggle [initialValue]="true" (onToggle)="toggleActivity($event)"></i-toggle>
       </i-form-item>
     </div>
     <button *ngIf="!ctor?.id" type="submit" [disabled]="!valid" class="success">

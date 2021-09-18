@@ -22,6 +22,11 @@ export class AppComponent {
     { id: 1, title: 'Home', route: 'home', expanded: false },
     { id: 7, title: 'About page', route: 'about', expanded: false },
     {
+      id: 9, title: 'Services', route: 'services/list', expanded: false, children: [
+        { id: 21, title: 'Add', route: 'services/add', expanded: false, children: [] },
+      ]
+    },
+    {
       id: 2, title: 'Articles', route: 'articles/list', expanded: false, children: [
         { id: 21, title: 'Add', route: 'articles/add', expanded: false, children: [] },
       ]
