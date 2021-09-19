@@ -38,6 +38,8 @@ import { ServicesComponent } from './pages/services/services.component';
 import { ServicesListComponent } from './pages/services-list/services-list.component';
 import { ServicesAddComponent } from './pages/services-add/services-add.component';
 import { ServicesEditComponent } from './pages/services-edit/services-edit.component';
+import { ServicesListMoscowComponent } from './pages/services-list-moscow/services-list-moscow.component';
+import { ServicesListNorilskComponent } from './pages/services-list-norilsk/services-list-norilsk.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +75,8 @@ import { ServicesEditComponent } from './pages/services-edit/services-edit.compo
     ServicesListComponent,
     ServicesAddComponent,
     ServicesEditComponent,
+    ServicesListMoscowComponent,
+    ServicesListNorilskComponent,
   ],
   imports: [
     AppRoutingModule,

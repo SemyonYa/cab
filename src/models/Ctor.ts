@@ -12,6 +12,7 @@ export class Ctor {
     thumbId: number;
     tag: string;
     items: CtorItem[];
+    region: RegionType
     isActive: boolean;
 
     constructor() {
@@ -36,3 +37,5 @@ export class CtorItem {
         }
     }
 }
+
+export type RegionType = 'Москва' | 'Норильск';

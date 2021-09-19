@@ -14,7 +14,7 @@ export class CtorComponent implements OnInit {
   @Input() ctorId: number = null;
   @Input() ctorRest: CtorRestService;
   @Input() tag: string;
-  // TODO: 
+  @Input() region: string;
   @Input() fields: string[];
   @Input() withItems: boolean = true;
   @Output() onSuccess = new EventEmitter<Ctor>();
@@ -67,6 +67,7 @@ export class CtorComponent implements OnInit {
       authorName: new FormControl(this.ctor?.authorName ?? ''),
       thumbId: new FormControl(this.ctor?.thumbId ?? ''),
       tag: new FormControl(this.ctor?.tag ?? this.tag ?? ''),
+      region: new FormControl(this.ctor?.region ?? this.region ?? ''),
       isActive: new FormControl(this.ctor.isActive),
     });
   }

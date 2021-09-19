@@ -29,6 +29,24 @@ a:hover {
   color: var(--color-secondary);
 }
 
+.links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.links a {
+  color: var(--color-secondary);
+  border-bottom: dotted 1px currentColor;
+  transition: .3s;
+}
+
+.links a.active {
+  color: var(--color-primary);
+  cursor: auto;
+  border-bottom-color: transparent;
+}
+
 h1,
 h2,
 h3,

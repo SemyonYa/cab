@@ -21,6 +21,8 @@ import { PositionsComponent } from './pages/positions/positions.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ServicesAddComponent } from './pages/services-add/services-add.component';
 import { ServicesEditComponent } from './pages/services-edit/services-edit.component';
+import { ServicesListMoscowComponent } from './pages/services-list-moscow/services-list-moscow.component';
+import { ServicesListNorilskComponent } from './pages/services-list-norilsk/services-list-norilsk.component';
 import { ServicesListComponent } from './pages/services-list/services-list.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { UsersAddComponent } from './pages/users-add/users-add.component';
@@ -50,8 +52,13 @@ const routes: Routes = [
   },
   {
     path: 'services', component: ServicesComponent, children: [
-      { path: 'list', component: ServicesListComponent },
-      { path: 'add', component: ServicesAddComponent },
+      {
+        path: 'list', component: ServicesListComponent, children: [
+          { path: 'moscow', component: ServicesListMoscowComponent },
+          { path: 'norilsk', component: ServicesListNorilskComponent }
+        ]
+      },
+      { path: 'add/:region', component: ServicesAddComponent },
       { path: 'edit/:id', component: ServicesEditComponent },
     ]
   },

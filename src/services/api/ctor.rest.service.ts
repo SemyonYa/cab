@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RestService } from './rest.service';
-import { Ctor, CtorItem } from '../../models/Ctor'
+import { Ctor, CtorItem, RegionType } from '../../models/Ctor'
 import { HttpClient } from '@angular/common/http';
 import { UiService } from '../ui.service';
 import { Observable } from 'rxjs';
@@ -22,8 +22,12 @@ export class CtorRestService extends RestService<Ctor> {
     return ctor;
   }
 
-  getByTag(tag: string): Observable<Ctor[]> {
-    return this.http.get<Ctor[]>(`${this.url}/tag/${tag}`)
+  getByTag(tag: string, region: RegionType = null): Observable<Ctor[]> {
+    let byTagUrl = `${this.url}/tag/${tag}`;
+    if (region) {
+      byTagUrl += `/${region}`;
+    }
+    return this.http.get<Ctor[]>(byTagUrl)
       .pipe(
         map(
           (items: any[]) => items.map(this.tConstructor)
