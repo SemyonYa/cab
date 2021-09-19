@@ -5,7 +5,7 @@
 
   <i-search-input (onChange)="search($event)"></i-search-input>
   <i-grid *ngIf="filteredCtors" [items]="filteredCtors" [titles]="titles" [withEdit]="true" [withDelete]="true"
-    [exclude]="exclude" (onEditItem)="editCtor($event)" (onDeleteItem)="onDelete($event)"></i-grid>
+    [fields]="fields" (onEditItem)="editCtor($event)" (onDeleteItem)="onDelete($event)"></i-grid>
   <div class="center">
     <i-in-progress *ngIf="!filteredCtors" size="36px" margin="48px"></i-in-progress>
   </div>

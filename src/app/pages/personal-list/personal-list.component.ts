@@ -13,7 +13,7 @@ import { CtorRestService } from 'src/services/api/ctor.rest.service';
 export class PersonalListComponent implements OnInit {
   private ctors: Ctor[];
   titles: string[];
-  exclude: string[];
+  fields: string[];
   searchValue: string = '';
   filteredCtors: Ctor[];
   ctorForDelete: Ctor;
@@ -34,8 +34,7 @@ export class PersonalListComponent implements OnInit {
         }
       );
     this.titles = ['ID', 'Title', 'created at', 'Author'];
-    this.exclude = [];
-    // this.exclude = ['subtitle', 'authorId', 'thumbId', 'tag'];
+    this.fields = ['id', 'title', 'createdAt', 'authorName'];
   }
 
   editCtor(id: number) {

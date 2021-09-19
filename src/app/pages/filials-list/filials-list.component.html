@@ -1,5 +1,5 @@
 <div class="col" @titleAnimation>
-  <i-grid *ngIf="filials" [items]="filials" [titles]="titles" [withEdit]="true" (onEditItem)="editFilial($event)">
+  <i-grid *ngIf="filials" [items]="filials" [titles]="titles" [fields]="fields" [withEdit]="true" (onEditItem)="editFilial($event)">
   </i-grid>
   <div class="center">
     <i-in-progress *ngIf="!filials" size="36px" margin="48px"></i-in-progress>

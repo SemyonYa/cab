@@ -12,6 +12,8 @@ import { FilialRestService } from '../../../services/api/filial.rest.service';
 })
 export class FilialsListComponent implements OnInit {
   filials: Filial[];
+  titles: string[];
+  fields: string[];
   constructor(
     private filialRest: FilialRestService,
     private router: Router
@@ -25,6 +27,9 @@ export class FilialsListComponent implements OnInit {
           this.filials = items;
         }
       );
+
+    this.titles = ['ID', 'Title', 'created at', 'Author'];
+    this.fields = ['id', 'title', 'createdAt', 'authorName'];
   }
 
   editFilial(id: number) {

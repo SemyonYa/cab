@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class UsersListComponent implements OnInit {
   private users: User[];
   titles: string[];
-
+  fields: string[];
   searchValue: string = '';
   filteredUsers: User[];
   editableUser: User;
@@ -33,6 +33,7 @@ export class UsersListComponent implements OnInit {
         }
       );
     this.titles = ['ID', 'first name', 'last name', 'login', 'role', 'Birthday', 'activity'];
+    this.fields = ['id', 'firstName', 'lastName', 'login', 'role', 'birth', 'activated',];
   }
 
   editUser(id: number) {

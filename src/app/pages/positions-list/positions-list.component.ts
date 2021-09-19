@@ -14,7 +14,7 @@ export class PositionsListComponent implements OnInit {
   tag = 'position'
   private ctors: Ctor[];
   titles: string[];
-  exclude: string[];
+  fields: string[];
   searchValue: string = '';
   filteredCtors: Ctor[];
   ctorForDelete: Ctor;
@@ -33,7 +33,7 @@ export class PositionsListComponent implements OnInit {
         }
       );
     this.titles = ['ID', 'Title', 'created at', 'Author'];
-    this.exclude = [];
+    this.fields = ['id', 'title', 'createdAt', 'authorName'];
     // this.exclude = ['subtitle', 'authorId', 'thumbId', 'tag'];
   }
 

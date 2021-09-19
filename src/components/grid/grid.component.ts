@@ -10,7 +10,8 @@ export class GridComponent<T> {
   @Input() titles: string[];
   @Input() withEdit: boolean;
   @Input() withDelete: boolean;
-  @Input() exclude: string[] = [];
+  @Input() fields: string[] = [];
+  // @Input() exclude: string[] = [];
   @Output() onEditItem = new EventEmitter<string>()
   @Output() onDeleteItem = new EventEmitter<string>()
 

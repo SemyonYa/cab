@@ -14,7 +14,7 @@ export class ServicesListComponent implements OnInit {
   tag = 'service'
   private ctors: Ctor[];
   titles: string[];
-  exclude: string[];
+  fields: string[];
   searchValue: string = '';
   filteredCtors: Ctor[];
   ctorForDelete: Ctor;
@@ -33,8 +33,7 @@ export class ServicesListComponent implements OnInit {
         }
       );
     this.titles = ['ID', 'Title', 'created at', 'Author'];
-    this.exclude = [];
-    // this.exclude = ['subtitle', 'authorId', 'thumbId', 'tag'];
+    this.fields = ['id', 'title', 'createdAt', 'authorName'];
   }
 
   editCtor(id: number) {
