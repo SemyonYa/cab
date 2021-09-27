@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { CollapsibleComponent } from './collapsible/collapsible.component';
+import { DataComponent } from './data/data.component';
 import { DropDownComponent } from './drop-down/drop-down.component';
 import { GridComponent } from './grid/grid.component';
 import { GridRowComponent } from './grid/grid-row/grid-row.component';
@@ -31,6 +32,7 @@ import { ImageLibraryModalComponent } from './file-input/image-library-modal/ima
     CollapsibleComponent,
     CtorComponent,
     CtorItemComponent,
+    DataComponent,
     DropDownComponent,
     FormItemComponent,
     GridComponent,
@@ -65,6 +67,7 @@ import { ImageLibraryModalComponent } from './file-input/image-library-modal/ima
     CollapsibleComponent,
     CtorComponent,
     CtorItemComponent,
+    DataComponent,
     DropDownComponent,
     FormItemComponent,
     GridComponent,

@@ -23,8 +23,7 @@ export class AppComponent {
     { id: 7, title: 'About page', route: 'about', expanded: false },
     {
       id: 9, title: 'Services', route: 'services/list', expanded: false, children: [
-        { id: 91, title: 'Moscow', route: 'services/list/moscow', expanded: false, children: [] },
-        { id: 92, title: 'Norilsk', route: 'services/list/norilsk', expanded: false, children: [] },
+        { id: 91, title: 'Add', route: 'services/add', expanded: false, children: [] },
       ]
     },
     {

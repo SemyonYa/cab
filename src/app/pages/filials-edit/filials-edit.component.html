@@ -1,6 +1,11 @@
 <div *ngIf="form" class="wrap col" @titleAnimation>
-  <h3>Edit filial {{filial.name}}</h3>
+  <h3>Edit filial {{filial.code}}</h3>
   <form [formGroup]="form" (ngSubmit)="submit()" class="col">
+    <i-form-item control="code" [form]="form">
+      <label>Code</label>
+      <input formControlName="code" type="text" readonly>
+    </i-form-item>
+
     <i-form-item control="name" [form]="form">
       <label>Name</label>
       <input formControlName="name" type="text">
@@ -8,27 +13,22 @@
 
     <i-form-item control="description" [form]="form">
       <label>Description</label>
-      <textarea formControlName="description"></textarea>
-    </i-form-item>
-
-    <i-form-item control="code" [form]="form">
-      <label>Code</label>
-      <input formControlName="code" type="text">
+      <textarea formControlName="description" rows="6"></textarea>
     </i-form-item>
 
     <i-form-item control="emails" [form]="form">
       <label>E-mail addresses</label>
-      <textarea formControlName="emails"></textarea>
+      <textarea formControlName="emails" rows="6"></textarea>
     </i-form-item>
 
     <i-form-item control="phones" [form]="form">
       <label>Phones</label>
-      <textarea formControlName="phones"></textarea>
+      <textarea formControlName="phones" rows="6"></textarea>
     </i-form-item>
 
     <i-form-item control="addresses" [form]="form">
       <label>Addresses</label>
-      <textarea formControlName="addresses"></textarea>
+      <textarea formControlName="addresses" rows="6"></textarea>
     </i-form-item>
 
     <button type="submit" [disabled]="form.invalid" class="success">Save</button>

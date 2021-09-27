@@ -28,8 +28,8 @@ export class FilialsListComponent implements OnInit {
         }
       );
 
-    this.titles = ['ID', 'Title', 'created at', 'Author'];
-    this.fields = ['id', 'title', 'createdAt', 'authorName'];
+    this.titles = ['ID', 'Region'];
+    this.fields = ['id', 'code'];
   }
 
   editFilial(id: number) {

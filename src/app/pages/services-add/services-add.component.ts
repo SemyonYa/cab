@@ -14,6 +14,7 @@ import { UiService } from 'src/services/ui.service';
 export class ServicesAddComponent implements OnInit {
   tag = 'service';
   region: RegionType;
+  regions: RegionType[];
   constructor(
     public ctorRest: CtorRestService,
     private uiService: UiService,
@@ -21,9 +22,12 @@ export class ServicesAddComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.region = this.activatedRoute.snapshot.params['region'] === 'moscow'
-      ? 'Москва'
-      : 'Норильск';
+    this.regions = ['Москва', 'Норильск'];
+    this.region = this.activatedRoute.snapshot.params['region']
+      ? this.activatedRoute.snapshot.params['region'] === 'moscow'
+        ? 'Москва'
+        : 'Норильск'
+      : null;
   }
 
 

@@ -59,6 +59,7 @@ const routes: Routes = [
         ]
       },
       { path: 'add/:region', component: ServicesAddComponent },
+      { path: 'add', component: ServicesAddComponent },
       { path: 'edit/:id', component: ServicesEditComponent },
     ]
   },

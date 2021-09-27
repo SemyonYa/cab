@@ -1,0 +1,16 @@
+.in-progress {
+  width: 100%;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty {
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-warning);
+  font-size: 24px;
+}

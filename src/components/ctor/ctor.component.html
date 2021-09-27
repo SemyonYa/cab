@@ -1,5 +1,5 @@
 <div *ngIf="form" class="wrap col">
-  <h1>[Ctor]</h1>
+  <h1>[Ctor#{{form.get('tag').value}}]</h1>
   <form [formGroup]="form" (ngSubmit)="submit()" class="col">
     <div class="parent">
       <i-form-item [form]="form" control="title">
@@ -26,13 +26,16 @@
         <label>Author name</label>
         <input type="text" formControlName="authorName">
       </i-form-item>
-      <i-form-item [form]="form" control="tag">
+      <i-form-item [form]="form" control="tag" class="none">
         <label>Tag</label>
         <input type="text" formControlName="tag" readonly>
       </i-form-item>
-      <i-form-item [form]="form" control="region">
+      <i-form-item [form]="form" control="region" [ngClass]="{'none': !regions}">
         <label>Region</label>
-        <input type="text" formControlName="region" readonly>
+        <select formControlName="region">
+          <option *ngFor="let region of regions" [value]="region">{{region}}</option>
+        </select>
+        <!-- <input type="text" formControlName="region" readonly> -->
       </i-form-item>
       <i-form-item [form]="form" control="thumbId">
         <label>Thumb</label>

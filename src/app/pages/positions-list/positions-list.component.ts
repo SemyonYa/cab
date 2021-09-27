@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { titleAnimation } from 'src/animations/title.animation';
-import { Ctor } from 'src/models/Ctor';
+import { Ctor, RegionType } from 'src/models/Ctor';
 import { CtorRestService } from 'src/services/api/ctor.rest.service';
 
 @Component({
@@ -12,9 +12,11 @@ import { CtorRestService } from 'src/services/api/ctor.rest.service';
 })
 export class PositionsListComponent implements OnInit {
   tag = 'position'
-  private ctors: Ctor[];
-  titles: string[];
-  fields: string[];
+  regions: RegionType[] = ['Москва', 'Норильск'];
+  currentRegion: RegionType;
+  ctors: Ctor[];
+  titles: string[] = ['ID', 'Title', 'created at', 'Author'];
+  fields: string[] = ['id', 'title', 'createdAt', 'authorName'];
   searchValue: string = '';
   filteredCtors: Ctor[];
   ctorForDelete: Ctor;
@@ -24,17 +26,22 @@ export class PositionsListComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void {
-    this.ctorRest.getByTag(this.tag)
+  ngOnInit(): void { }
+
+  fetchData() {
+    this.ctors = null;
+    this.ctorRest.getByTag(this.tag, this.currentRegion)
       .subscribe(
-        cs => {
-          this.ctors = cs;
+        items => {
+          this.ctors = items;
           this.filterCtors();
         }
       );
-    this.titles = ['ID', 'Title', 'created at', 'Author'];
-    this.fields = ['id', 'title', 'createdAt', 'authorName'];
-    // this.exclude = ['subtitle', 'authorId', 'thumbId', 'tag'];
+  }
+
+  selectRegion(region: RegionType) {
+    this.currentRegion = region;
+    this.fetchData();
   }
 
   editCtor(id: number) {

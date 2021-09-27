@@ -2,7 +2,7 @@ import { formatDate } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Image } from 'src/models/Image';
-import { Ctor, CtorItem } from '../../models/Ctor';
+import { Ctor, CtorItem, RegionType } from '../../models/Ctor';
 import { CtorRestService } from '../../services/api/ctor.rest.service';
 
 @Component({
@@ -17,6 +17,7 @@ export class CtorComponent implements OnInit {
   @Input() region: string;
   @Input() fields: string[];
   @Input() withItems: boolean = true;
+  @Input() regions: RegionType[];
   @Output() onSuccess = new EventEmitter<Ctor>();
   ctor: Ctor;
   form: FormGroup;
@@ -151,4 +152,35 @@ export class CtorComponent implements OnInit {
         }
       );
   }
+}
+
+export interface CtorConfig {
+  /**
+   * For edit form. 
+   */
+  ctorId?: number;
+  /**
+   * REST API for Ctor model
+   */
+  ctorRest: CtorRestService;
+  tag: string;
+  /**
+   * TODO: 
+   */
+  fields: string[];
+  /** 
+   * For element whithout ctorItem list. 
+   * For example, person CRUD. 
+   * Default value - false 
+   * */
+  withItems?: boolean;
+  /** 
+   * ???? 
+   * */
+  region: RegionType;
+  /** 
+   * Region list for select. 
+   * If field is undefined, ui element is invisible. 
+   * */
+  regions?: RegionType[];
 }

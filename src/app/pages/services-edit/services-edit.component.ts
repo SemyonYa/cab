@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { titleAnimation } from 'src/animations/title.animation';
-import { Ctor } from 'src/models/Ctor';
+import { Ctor, RegionType } from 'src/models/Ctor';
 import { CtorRestService } from 'src/services/api/ctor.rest.service';
 import { UiService } from 'src/services/ui.service';
 
@@ -13,6 +13,7 @@ import { UiService } from 'src/services/ui.service';
 })
 export class ServicesEditComponent implements OnInit {
   tag = 'service';
+  regions: RegionType[];
   ctorId: number;
   constructor(
     public ctorRest: CtorRestService,
@@ -21,6 +22,7 @@ export class ServicesEditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.regions = ['Москва', 'Норильск'];
     this.ctorId = this.activatedRoute.snapshot.params['id'];
   }
 
